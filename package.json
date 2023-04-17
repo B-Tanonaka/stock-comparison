@@ -4,7 +4,8 @@
   "description": "Graph tool to compare stocks",
   "main": "index.js",
   "scripts": {
-    "test": ""
+    "test": "",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -16,10 +17,22 @@
   },
   "homepage": "https://github.com/B-Tanonaka/stock-comparison#readme",
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "morgan": "^1.10.0",
     "node": "^19.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "@babel/preset-react": "^7.18.6",
+    "babel-loader": "^9.1.2",
+    "html-webpack-plugin": "^5.5.1",
+    "webpack": "^5.79.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.13.3"
   }
 }
