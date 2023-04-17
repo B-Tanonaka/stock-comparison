@@ -1,0 +1,25 @@
+{
+  "name": "stock-comparison",
+  "version": "1.0.0",
+  "description": "Graph tool to compare stocks",
+  "main": "index.js",
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/B-Tanonaka/stock-comparison.git"
+  },
+  "author": "Brett Tanonaka",
+  "bugs": {
+    "url": "https://github.com/B-Tanonaka/stock-comparison/issues"
+  },
+  "homepage": "https://github.com/B-Tanonaka/stock-comparison#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "node": "^19.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
