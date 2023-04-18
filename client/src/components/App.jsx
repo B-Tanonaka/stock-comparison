@@ -8,8 +8,9 @@ import sampleData from '../sampleData';
 
 function App() {
   // const [ticker1, setTicker1] = useState({ name: '', data: '' });
-  const [ticker1, setTicker1] = useState(sampleData);
-  const [ticker2, setTicker2] = useState({ name: '', date: '' });
+  const [ticker1, setTicker1] = useState(sampleData[1]);
+  const [ticker2, setTicker2] = useState(sampleData[0]);
+  // const [ticker2, setTicker2] = useState({ name: '', date: '' });
   const [tickerAll, setTickerAll] = useState([]);
   const [searchQuery, setSearchQuery] = useState({ ticker: '', date: '' });
   const [budget, setBudget] = useState('');
@@ -28,26 +29,16 @@ function App() {
 
   useEffect(() => {
     if (ticker1.data && ticker2.data) {
-      const tickerAllHolder = ticker1.data.map((t1Day) => ({
+      const tickerAllCombined = ticker1.data.map((t1Day) => ({
         ...ticker2.data.find((t2Day) => (t1Day.date === t2Day.date) && t2Day),
         ...t1Day,
       }));
-      setTickerAll(tickerAllHolder);
+      setTickerAll(tickerAllCombined);
     }
   }, [ticker1, ticker2]);
 
   // console.log("tickerAll: ", tickerAll);
-  console.log("tickerName: ", tickerAll);
-
-  // console.log(ticker1);
-
-  // useEffect(() => {
-  //   axios.get('/stocks', { params: { ticker: 'msft', date: '2018-01-01' } })
-  //     .then((response) => {
-  //       setTicker1Data(response.data);
-  //     })
-  //     .catch((err) => console.error(err));
-  // }, []);
+  console.log("tickerAll: ", tickerAll);
 
   return (
     <div>

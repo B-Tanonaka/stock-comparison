@@ -11,7 +11,7 @@ import {
 
 const moment = require('moment');
 
-function Graph({ ticker1, ticker2 }) {
+function Graph({ ticker1, ticker2, tickerAll }) {
   const [range, setRange] = useState({ low: Infinity, high: 0 });
 
   const findRange = () => {
@@ -30,17 +30,21 @@ function Graph({ ticker1, ticker2 }) {
     ];
   };
 
+  const determineDataSet = () => {
+    return tickerAll.length > 0 ? tickerAll : ticker1.data
+  }
+
   return (
     <div>
-      {ticker1.name !== '' && (
-        <LineChart width={1000} height={300} data={ticker1.data}>
+      {tickerAll && (
+        <LineChart width={1000} height={300} data={tickerAll}>
           <XAxis dataKey="date" />
-          <YAxis type="number" domain={findRange} />
+          <YAxis />
           <CartesianGrid stroke="#eee" strokeDasharray="3 3" />
           <Tooltip />
           <Legend verticalAlign="top" height={36} />
           <Line type="monotone" dataKey={ticker1.name} stroke="#8884d8" />
-          <Line type="monotone" dataKey={ticker2.name} stroke="#8884d8" />
+          <Line type="monotone" dataKey={ticker2.name} stroke="#000" />
         </LineChart>
       )}
     </div>
@@ -48,3 +52,6 @@ function Graph({ ticker1, ticker2 }) {
 }
 
 export default Graph;
+
+
+// type="number" domain={findRange}
