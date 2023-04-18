@@ -9,7 +9,7 @@ import {
   Legend} from 'recharts';
 const moment = require('moment');
 
-function Graph({ ticker1 }) {
+function Graph({ ticker1Data }) {
   const [uniqueYearTicks, setUniqueYearTicks] = useState([]);
 
   useEffect(() => {
