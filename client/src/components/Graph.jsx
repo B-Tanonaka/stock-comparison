@@ -13,10 +13,10 @@ function Graph({ ticker1Data }) {
   const [uniqueYearTicks, setUniqueYearTicks] = useState([]);
 
   useEffect(() => {
-    const uniqueYears = Array.from(new Set(ticker1.map((d) => new Date(d.name).getUTCFullYear())));
+    const uniqueYears = Array.from(new Set(ticker1Data.map((d) => new Date(d.name).getUTCFullYear())));
     const unique = uniqueYears.map((year) => new Date(Date.UTC(year, 0, 1)).getTime());
     setUniqueYearTicks(unique);
-  }, [ticker1]);
+  }, [ticker1Data]);
 
   const formatXAxisTick = (tickValue) => {
     const date = new Date(tickValue);
@@ -27,13 +27,13 @@ function Graph({ ticker1Data }) {
 
   return (
     <div>
-      <LineChart width={1000} height={400} data={ticker1}>
+      <LineChart width={1000} height={400} data={ticker1Data}>
         <CartesianGrid strokeDasharray="3 3" />
         <Line type="monotone" dataKey="price" stroke="#000" dot={false} />
         <XAxis
         dataKey="name"
         tickFormatter={formatXAxisTick}
-        ticks={ticker1.map((year) => new Date(Date.UTC(year, 0, 1)).getTime())}
+        ticks={ticker1Data.map((year) => new Date(Date.UTC(year, 0, 1)).getTime())}
         />
         <YAxis />
       </LineChart>
