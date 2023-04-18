@@ -1,7 +1,6 @@
-const controller = require('./controller');
 const router = require('express').Router();
+const controller = require('./controller');
 
-router.get('')
-
+router.get('/stocks', controller.getStock);
 
 module.exports = router;
