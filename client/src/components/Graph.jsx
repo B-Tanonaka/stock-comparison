@@ -21,12 +21,12 @@ function Graph({ ticker1 }) {
       if (day.price > range.high) {
         setRange({ ...range, high: day.price });
       }
-      console.log(range);
     });
-    return [range.low, range.high];
+    return [
+      Math.round((range.low * .9) / 25) * 25,
+      Math.round(range.high / 25) * 25,
+    ];
   };
-
-// console.log(ticker1)
 
   return (
     <div>
