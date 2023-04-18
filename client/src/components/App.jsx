@@ -5,22 +5,18 @@ import Search from './Search';
 import BudgetAndResult from './BudgetAndResult';
 
 function App() {
-  const queryFrame = {
-    ticker: '',
-    date: '',
-  };
-  const [ticker1Data, setTicker1Data] = useState('');
-  const [ticker2Data, setTicker2Data] = useState('');
-  const [searchQuery, setSearchQuery] = useState(queryFrame);
+  const [ticker1, setTicker1] = useState({ name: '', data: '' });
+  const [ticker2, setTicker2] = useState({ name: '', date: '' });
+  const [searchQuery, setSearchQuery] = useState({ ticker: '', date: '' });
   const [budget, setBudget] = useState('');
 
   const getStockInfo = (stock, startingDate) => {
     axios.get('/stocks', { params: { ticker: stock, date: startingDate } })
       .then((response) => {
-        if (!ticker1Data) {
-          setTicker1Data(response.data);
-        } else if (!ticker2Data) {
-          setTicker2Data(response.data);
+        if (ticker1.name === '') {
+          setTicker1({ name: searchQuery.ticker, data: response.data });
+        } else if (ticker2.name === '' && ticker1.name !== searchQuery.ticker) {
+          setTicker2({ name: searchQuery.ticker, data: response.data });
         }
       })
       .catch((err) => console.error(err));
@@ -44,8 +40,8 @@ function App() {
         setBudget={setBudget}
       />
       <BudgetAndResult budget={budget} />
-      <button onClick={() => {console.log("ticker1Data: ", ticker1Data, "ticker2Data: ", ticker2Data, "budget: ", budget)}}>Test the data</button>
-      {/* <Graph ticker1={ticker1Data} ticker2={ticker2Data} /> */}
+      <button onClick={() => {console.log("ticker1Data: ", ticker1, "ticker2Data: ", ticker2, "budget: ", budget)}}>Test the data</button>
+      {/* <Graph ticker1={ticker1} ticker2={ticker2} /> */}
     </div>
   );
 }

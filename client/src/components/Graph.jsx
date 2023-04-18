@@ -9,14 +9,14 @@ import {
   Legend} from 'recharts';
 const moment = require('moment');
 
-function Graph({ ticker1Data }) {
+function Graph({ ticker1 }) {
   const [uniqueYearTicks, setUniqueYearTicks] = useState([]);
 
   useEffect(() => {
     const uniqueYears = Array.from(new Set(ticker1Data.map((d) => new Date(d.name).getUTCFullYear())));
     const unique = uniqueYears.map((year) => new Date(Date.UTC(year, 0, 1)).getTime());
     setUniqueYearTicks(unique);
-  }, [ticker1Data]);
+  }, [ticker1.data]);
 
   const formatXAxisTick = (tickValue) => {
     const date = new Date(tickValue);
@@ -27,7 +27,7 @@ function Graph({ ticker1Data }) {
 
   return (
     <div>
-      <LineChart width={1000} height={400} data={ticker1Data}>
+      <LineChart width={1000} height={400} data={ticker1.data}>
         <CartesianGrid strokeDasharray="3 3" />
         <Line type="monotone" dataKey="price" stroke="#000" dot={false} />
         <XAxis
