@@ -25,6 +25,8 @@ function App() {
       .catch((err) => console.error(err));
   };
 
+
+
   // useEffect(() => {
   //   axios.get('/stocks', { params: { ticker: 'msft', date: '2018-01-01' } })
   //     .then((response) => {
@@ -48,7 +50,7 @@ function App() {
         ticker2={ticker2}
       /> */}
       <button onClick={() => {console.log("ticker1Data: ", ticker1, "ticker2Data: ", ticker2, "budget: ", budget)}}>Test the data</button>
-      {/* <Graph ticker1={ticker1} ticker2={ticker2} /> */}
+      <Graph ticker1={ticker1} ticker2={ticker2} />
     </div>
   );
 }
