@@ -9,8 +9,8 @@ import sampleData from '../sampleData';
 function App() {
   // const [ticker1, setTicker1] = useState({ name: '', data: '' });
   const [ticker1, setTicker1] = useState(sampleData[1]);
-  const [ticker2, setTicker2] = useState(sampleData[0]);
-  // const [ticker2, setTicker2] = useState({ name: '', date: '' });
+  // const [ticker2, setTicker2] = useState(sampleData[0]);
+  const [ticker2, setTicker2] = useState({ name: '', data: '' });
   const [tickerAll, setTickerAll] = useState([]);
   const [searchQuery, setSearchQuery] = useState({ ticker: '', date: '' });
   const [budget, setBudget] = useState('');
@@ -18,9 +18,9 @@ function App() {
   const getStockInfo = (stock, startingDate) => {
     axios.get('/stocks', { params: { ticker: stock, date: startingDate } })
       .then((response) => {
-        if (ticker1.name === '') {
+        if (!ticker1.data) {
           setTicker1({ name: searchQuery.ticker, data: response.data });
-        } else if (ticker2.name === '' && ticker1.name !== searchQuery.ticker) {
+        } else if (!ticker2.data && ticker1.name !== searchQuery.ticker) {
           setTicker2({ name: searchQuery.ticker, data: response.data });
         }
       })
