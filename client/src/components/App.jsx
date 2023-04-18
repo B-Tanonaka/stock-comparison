@@ -10,6 +10,7 @@ function App() {
   // const [ticker1, setTicker1] = useState({ name: '', data: '' });
   const [ticker1, setTicker1] = useState(sampleData);
   const [ticker2, setTicker2] = useState({ name: '', date: '' });
+  const [tickerAll, setTickerAll] = useState([]);
   const [searchQuery, setSearchQuery] = useState({ ticker: '', date: '' });
   const [budget, setBudget] = useState('');
 
@@ -25,7 +26,20 @@ function App() {
       .catch((err) => console.error(err));
   };
 
+  useEffect(() => {
+    if (ticker1.data && ticker2.data) {
+      const tickerAllHolder = ticker1.data.map((t1Day) => ({
+        ...ticker2.data.find((t2Day) => (t1Day.date === t2Day.date) && t2Day),
+        ...t1Day,
+      }));
+      setTickerAll(tickerAllHolder);
+    }
+  }, [ticker1, ticker2]);
 
+  // console.log("tickerAll: ", tickerAll);
+  console.log("tickerName: ", tickerAll);
+
+  // console.log(ticker1);
 
   // useEffect(() => {
   //   axios.get('/stocks', { params: { ticker: 'msft', date: '2018-01-01' } })
@@ -49,8 +63,12 @@ function App() {
         ticker1={ticker1}
         ticker2={ticker2}
       /> */}
-      <button onClick={() => {console.log("ticker1Data: ", ticker1, "ticker2Data: ", ticker2, "budget: ", budget)}}>Test the data</button>
-      <Graph ticker1={ticker1} ticker2={ticker2} />
+      <button onClick={() =>
+        {console.log("ticker1Data: ", ticker1,
+        "ticker2Data: ", ticker2,
+        "budget: ", budget,
+        "tickerAll: ", tickerAll)}}>Test the data</button>
+      <Graph ticker1={ticker1} ticker2={ticker2} tickerAll={tickerAll} />
     </div>
   );
 }

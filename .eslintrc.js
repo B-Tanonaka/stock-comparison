@@ -18,5 +18,6 @@ module.exports = {
   ],
   rules: {
     'react/prop-types': 0,
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
   },
 };

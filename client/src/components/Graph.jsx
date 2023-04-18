@@ -2,24 +2,26 @@ import React, { useState, useEffect } from 'react';
 import {
   LineChart,
   Line,
-  XAxis,
   YAxis,
+  XAxis,
   CartesianGrid,
   Tooltip,
-  Legend} from 'recharts';
+  Legend,
+} from 'recharts';
+
 const moment = require('moment');
 
-function Graph({ ticker1 }) {
+function Graph({ ticker1, ticker2 }) {
   const [range, setRange] = useState({ low: Infinity, high: 0 });
 
   const findRange = () => {
-    ticker1.forEach((day) => {
-      day.price = Math.round(day.price * 100) / 100;
-      if (day.price < range.low) {
-        setRange({ ...range, low: day.price });
+    ticker1.data.forEach((day) => {
+      day[ticker1.name] = Math.round(day[ticker1.name] * 100) / 100;
+      if (day[ticker1.name] < range.low) {
+        setRange({ ...range, low: day[ticker1.name] });
       }
-      if (day.price > range.high) {
-        setRange({ ...range, high: day.price });
+      if (day[ticker1.name] > range.high) {
+        setRange({ ...range, high: day[ticker1.name] });
       }
     });
     return [
@@ -30,12 +32,17 @@ function Graph({ ticker1 }) {
 
   return (
     <div>
-      <LineChart width={1000} height={300} data={ticker1}>
-        <XAxis />
-        <YAxis dataKey="price" type="number" domain={findRange} />
-        {/* <CartesianGrid stroke="#eee" strokeDasharray="3 3" /> */}
-        <Line type="monotone" dataKey="price" stroke="#8884d8" />
-      </LineChart>
+      {ticker1.name !== '' && (
+        <LineChart width={1000} height={300} data={ticker1.data}>
+          <XAxis dataKey="date" />
+          <YAxis type="number" domain={findRange} />
+          <CartesianGrid stroke="#eee" strokeDasharray="3 3" />
+          <Tooltip />
+          <Legend verticalAlign="top" height={36} />
+          <Line type="monotone" dataKey={ticker1.name} stroke="#8884d8" />
+          <Line type="monotone" dataKey={ticker2.name} stroke="#8884d8" />
+        </LineChart>
+      )}
     </div>
   );
 }
