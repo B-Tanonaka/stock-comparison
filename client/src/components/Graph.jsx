@@ -1,15 +1,42 @@
-import React from 'react';
-import { LineChart, Line, XAxis, YAxis } from 'recharts';
+import React, { useState, useEffect } from 'react';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend} from 'recharts';
+const moment = require('moment');
 
 function Graph({ ticker1 }) {
+  const [uniqueYearTicks, setUniqueYearTicks] = useState([]);
+
+  useEffect(() => {
+    const uniqueYears = Array.from(new Set(ticker1.map((d) => new Date(d.name).getUTCFullYear())));
+    const unique = uniqueYears.map((year) => new Date(Date.UTC(year, 0, 1)).getTime());
+    setUniqueYearTicks(unique);
+  }, [ticker1]);
+
+  const formatXAxisTick = (tickValue) => {
+    const date = new Date(tickValue);
+    const formattedValue = date.getUTCFullYear().toString();
+    console.log("formattedValue: ", formattedValue);
+    return formattedValue;
+  };
+
   return (
     <div>
-    <div>from the graphs</div>
-    <LineChart width={400} height={400} data={ticker1}>
-      <Line type="monotone" dataKey="price" stroke="#8884d8" dot={false} />
-      <XAxis dataKey={ticker1.name} />
-      <YAxis />
-    </LineChart>
+      <LineChart width={1000} height={400} data={ticker1}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <Line type="monotone" dataKey="price" stroke="#000" dot={false} />
+        <XAxis
+        dataKey="name"
+        tickFormatter={formatXAxisTick}
+        ticks={ticker1.map((year) => new Date(Date.UTC(year, 0, 1)).getTime())}
+        />
+        <YAxis />
+      </LineChart>
     </div>
   );
 }
