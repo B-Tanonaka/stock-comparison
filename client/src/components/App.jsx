@@ -25,33 +25,29 @@ function App() {
   const [budget, setBudget] = useState('');
   const [gains, setGains] = useState({ ticker1: 0, ticker2: 0 });
 
-  // Combine ticker1 and ticker2 into tickerAll
-  const combineTickerData = () => {
-    console.log('ticker1InsideCombine: ', ticker1);
-    console.log('ticker2InsideCombine: ', ticker2);
-    console.log('tickerAll: ', tickerAll);
-      const tickerAllCombined = ticker1.data.map((t1Day) => ({
-        ...ticker2.data.find((t2Day) => (t1Day.date === t2Day.date) && t2Day),
-        ...t1Day,
-      }));
-      setTickerAll(tickerAllCombined);
-  };
-
   // Get request that filters data based on what state is empty
   const getStockInfo = (stock, startingDate) => {
     axios.get('/stocks', { params: { ticker: stock, date: startingDate } })
       .then((response) => {
         if (!ticker1.data && ticker2.name !== searchQuery.ticker) {
-          setTicker1((ticker1) => ({ ...ticker1, name: searchQuery.ticker, data: response.data }));
+          setTicker1({ ...ticker1, name: searchQuery.ticker, data: response.data });
         } else if (!ticker2.data && ticker1.name !== searchQuery.ticker) {
-          setTicker2((ticker2) => ({ ...ticker2, name: searchQuery.ticker, data: response.data }));
+          setTicker2({ ...ticker2, name: searchQuery.ticker, data: response.data });
         }
-      }).then(() => {
-        combineTickerData();
-        console.log('tickerAllGetStockInfo: ', tickerAll);
       })
-      .catch((err) => console.error('getStockInfo: ', err));
+      .catch((err) => console.error(err));
   };
+
+  // Combine ticker1 and ticker2 into tickerAll
+  useEffect(() => {
+    if (ticker1.data && ticker2.data) {
+      const tickerAllCombined = ticker1.data.map((t1Day) => ({
+        ...ticker2.data.find((t2Day) => (t1Day.date === t2Day.date) && t2Day),
+        ...t1Day,
+      }));
+      setTickerAll(tickerAllCombined);
+    }
+  }, [ticker1, ticker2]);
 
   // Give numbers commas
   const numberCommas = (num) => (
@@ -67,7 +63,6 @@ function App() {
         budget={budget}
         setBudget={setBudget}
         numberCommas={numberCommas}
-        combineTickerData={combineTickerData}
       />
       <BudgetAndResult
         budget={budget}

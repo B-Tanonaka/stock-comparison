@@ -6,7 +6,6 @@ function Search({
   setSearchQuery,
   budget,
   setBudget,
-  combineTickerData,
 }) {
   const handleStock = (e) => {
     e.preventDefault();
@@ -16,7 +15,6 @@ function Search({
   const handleSubmit = (e) => {
     e.preventDefault();
     getStockInfo(searchQuery.ticker, searchQuery.date);
-    // combineTickerData();
   };
 
   return (
