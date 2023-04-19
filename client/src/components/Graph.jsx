@@ -28,9 +28,9 @@ function Graph({ ticker1, ticker2, tickerAll }) {
 
   return (
     <div>
-      <LineChart width={1000} height={300} data={determineDataSet()}>
+      <LineChart width={1000} height={300} data={determineDataSet()} key={Math.random()}>
         <XAxis tick={false} dataKey="date" />
-        <YAxis type="number" domain={['auto', (dataMax) => (calculateDomain(dataMax))]} />
+        <YAxis type="number" domain={[(dataMin) => (calculateDomain(dataMin)), 'auto']} />
         <CartesianGrid stroke="#eee" strokeDasharray="3 3" />
         <Tooltip />
         <Legend verticalAlign="top" height={36} />

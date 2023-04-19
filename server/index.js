@@ -15,7 +15,6 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-// app.get('/test', (req, res) => {console.log('hi')});
 app.use('/', router);
 
 app.listen(PORT, () => {
