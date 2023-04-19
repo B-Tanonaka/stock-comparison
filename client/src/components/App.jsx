@@ -10,6 +10,7 @@ function App() {
   // const [ticker1, setTicker1] = useState(sampleData[1]);
   // const [ticker2, setTicker2] = useState(sampleData[0]);
   const [ticker1, setTicker1] = useState({
+    ticker: 'ticker1',
     name: '',
     data: '',
     high: 0,
@@ -17,6 +18,7 @@ function App() {
     gains: 0,
   });
   const [ticker2, setTicker2] = useState({
+    ticker: 'ticker2',
     name: '',
     data: '',
     high: 0,
@@ -93,6 +95,7 @@ function App() {
         ticker2={ticker2}
         setTicker1={setTicker1}
         setTicker2={setTicker2}
+        gains={gains}
       />
     </div>
   );

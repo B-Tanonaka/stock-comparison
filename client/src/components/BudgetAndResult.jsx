@@ -37,7 +37,7 @@ function BudgetAndResult({
     const todayPrice = stock.data[stock.data.length - 1][stock.name];
     const shares = budget / firstDayPrice;
     return Math.round(((shares * todayPrice) - budget) * 100) / 100;
-  }
+  };
 
   // Calculate total gains for ticker1
   useEffect(() => {

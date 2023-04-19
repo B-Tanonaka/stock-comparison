@@ -5,6 +5,7 @@ function HighLow({
   ticker2,
   setTicker1,
   setTicker2,
+  gains,
 }) {
   const tickerSet = [ticker1, ticker2];
 
@@ -14,7 +15,7 @@ function HighLow({
       <div>{share.name}</div>
       <div>High: {share.high}</div>
       <div>Low: {share.low}</div>
-      <div>Capital: </div>
+      <div>Capital: {gains[share.ticker]}</div>
     </div>
     )
   );
