@@ -14,9 +14,21 @@ function BudgetAndResult({
   const resetTicker = (tick) => {
     setTickerAll({});
     if (tick === '1') {
-      setTicker1({ name: '', data: '' });
+      setTicker1({
+        name: '',
+        data: '',
+        high: 0,
+        low: Infinity,
+        gains: 0,
+      });
     } else if (tick === '2') {
-      setTicker2({ name: '', data: '' });
+      setTicker2({
+        name: '',
+        data: '',
+        high: 0,
+        low: Infinity,
+        gains: 0,
+      });
     }
   };
 
@@ -27,7 +39,9 @@ function BudgetAndResult({
       const t1TodayPrice = ticker1.data[ticker1.data.length - 1][ticker1.name];
       const t1shares = budget / t1firstDayPrice;
       const t1totalGains = Math.round(((t1shares * t1TodayPrice) - budget) * 100) / 100;
-      setGains((gains) => { gains.ticker1 = t1totalGains; return gains; });
+      setTicker1((ticker1) => { ticker1.gains = t1totalGains; return ticker1; });
+      console.log('ticker1: ', ticker1);
+      console.log('t1totalGains: ', t1totalGains);
     }
     if (ticker2.data) {
       const t2firstDayPrice = ticker2.data[0][ticker2.name];
@@ -43,7 +57,7 @@ function BudgetAndResult({
       <div className="ticker-names">
         <div>
           <div>
-            {ticker1.data && `${ticker1.name}: ${numberCommas(gains.ticker1)}`}
+            {ticker1.data && `${ticker1.name}: ${numberCommas(ticker1.gains)}`}
           </div>
           <span onClick={() => resetTicker('1')}>X</span>
         </div>
