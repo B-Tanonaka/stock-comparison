@@ -22,7 +22,7 @@ function BudgetAndResult({
 
   useEffect(() => {
     if (ticker1.data) {
-      const t1firstDayPrice = ticker1.data[ticker1.data.length - 1][ticker1.name];
+      const t1firstDayPrice = ticker1.data[0][ticker1.name];
       const t1shares = budget / t1firstDayPrice;
       console.log('t1shares: ', t1shares);
       setGains({ ...gains, ticker1: t1shares });
@@ -31,7 +31,7 @@ function BudgetAndResult({
 
   useEffect(() => {
     if (ticker2.data) {
-      const t2firstDayPrice = ticker2.data[ticker2.data.length - 1][ticker2.name];
+      const t2firstDayPrice = ticker2.data[0][ticker2.name];
       const t2shares = budget / t2firstDayPrice;
       console.log('t2shares: ', t2shares);
       setGains({ ...gains, ticker2: t2shares });
