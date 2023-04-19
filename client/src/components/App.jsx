@@ -8,8 +8,8 @@ import sampleData from '../sampleData';
 function App() {
   // const [ticker1, setTicker1] = useState(sampleData[1]);
   // const [ticker2, setTicker2] = useState(sampleData[0]);
-  const [ticker1, setTicker1] = useState({ name: '', data: '' });
-  const [ticker2, setTicker2] = useState({ name: '', data: '' });
+  const [ticker1, setTicker1] = useState({ name: '', data: '', high: '', low: '' });
+  const [ticker2, setTicker2] = useState({ name: '', data: '', high: '', low: '' });
   const [tickerAll, setTickerAll] = useState({});
   const [searchQuery, setSearchQuery] = useState({ ticker: '', date: '' });
   const [budget, setBudget] = useState(10000);
