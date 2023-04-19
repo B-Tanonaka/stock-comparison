@@ -8,9 +8,9 @@ function BudgetAndResult({
   setTicker1,
   setTicker2,
   setTickerAll,
-  searchQuery,
   gains,
-  setGains }) {
+  setGains,
+}) {
   const resetTicker = (tick) => {
     setTickerAll({});
     if (tick === '1') {
@@ -20,21 +20,27 @@ function BudgetAndResult({
     }
   };
 
+  // Calculate selected day's shares for ticker1
   useEffect(() => {
     if (ticker1.data) {
       const t1firstDayPrice = ticker1.data[0][ticker1.name];
+      const t1TodayPrice = ticker1.data[ticker1.data.length - 1][ticker1.name];
       const t1shares = budget / t1firstDayPrice;
-      console.log('t1shares: ', t1shares);
-      setGains({ ...gains, ticker1: t1shares });
+      const t1totalGains = Math.round(((t1shares * t1TodayPrice) - budget) * 100) / 100;
+      setGains({ ...gains, ticker1: `$${t1totalGains}` });
     }
   }, [ticker1]);
 
+  console.log('gains: ', gains);
+
+  // Calculate selected day's shares for ticker2
   useEffect(() => {
     if (ticker2.data) {
       const t2firstDayPrice = ticker2.data[0][ticker2.name];
+      const t2TodayPrice = ticker2.data[ticker2.data.length - 1][ticker2.name];
       const t2shares = budget / t2firstDayPrice;
-      console.log('t2shares: ', t2shares);
-      setGains({ ...gains, ticker2: t2shares });
+      const t2totalGains = Math.round(((t2shares * t2TodayPrice) - budget) * 100) / 100;
+      setGains({ ...gains, ticker2: `$${t2totalGains}` });
     }
   }, [ticker2]);
 
@@ -42,11 +48,11 @@ function BudgetAndResult({
     <div>
       <div className="ticker-names">
         <div>
-          <div>{ticker1.name}:</div>
+          <div>{ticker1.name}: {gains.ticker1}</div>
           <span onClick={() => resetTicker('1')}>X</span>
         </div>
         <div>
-          <div>{ticker2.name}:</div>
+          <div>{ticker2.name}: {gains.ticker2}</div>
           <span onClick={() => resetTicker('2')}>X</span>
         </div>
       </div>
