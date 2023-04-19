@@ -14,12 +14,14 @@ function App() {
     data: '',
     high: 0,
     low: Infinity,
+    gains: 0,
   });
   const [ticker2, setTicker2] = useState({
     name: '',
     data: '',
     high: 0,
     low: Infinity,
+    gains: 0,
   });
   const [tickerAll, setTickerAll] = useState({});
   const [searchQuery, setSearchQuery] = useState({ ticker: '', date: '' });

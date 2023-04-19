@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 function HighLow({
   ticker1,
@@ -6,6 +6,19 @@ function HighLow({
   setTicker1,
   setTicker2,
 }) {
+  const tickerSet = [ticker1, ticker2];
+
+  const renderCards = (share) => (
+    share.data && (
+    <div>
+      <div>{share.name}</div>
+      <div>High: {share.high}</div>
+      <div>Low: {share.low}</div>
+      <div>Capital: </div>
+    </div>
+    )
+  );
+
   useEffect(() => {
     if (ticker1.data) {
       ticker1.data.forEach((day) => {
@@ -28,6 +41,12 @@ function HighLow({
       });
     }
   }, [ticker1, ticker2]);
+
+  return (
+    <div>
+      {tickerSet.map((stock) => renderCards(stock))}
+    </div>
+  );
 }
 
 export default HighLow;
