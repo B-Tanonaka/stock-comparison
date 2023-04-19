@@ -4,18 +4,14 @@ import Graph from './Graph';
 import Search from './Search';
 import BudgetAndResult from './BudgetAndResult';
 import HighLow from './HighLow';
-import sampleData from '../sampleData';
 
 function App() {
-  // const [ticker1, setTicker1] = useState(sampleData[1]);
-  // const [ticker2, setTicker2] = useState(sampleData[0]);
   const [ticker1, setTicker1] = useState({
     ticker: 'ticker1',
     name: '',
     data: '',
     high: 0,
     low: Infinity,
-    gains: 0,
   });
   const [ticker2, setTicker2] = useState({
     ticker: 'ticker2',
@@ -23,11 +19,10 @@ function App() {
     data: '',
     high: 0,
     low: Infinity,
-    gains: 0,
   });
   const [tickerAll, setTickerAll] = useState({});
   const [searchQuery, setSearchQuery] = useState({ ticker: '', date: '' });
-  const [budget, setBudget] = useState(10000);
+  const [budget, setBudget] = useState('');
   const [gains, setGains] = useState({ ticker1: 0, ticker2: 0 });
 
   // Get request that filters data based on what state is empty

@@ -8,7 +8,7 @@ module.exports = {
     return data.quotes.map((day) => ({
       date: moment(day.date).format('LL'),
       utc: day.date,
-      [query.toUpperCase()]: Math.round(day.close * 100) / 100,
+      [query.toUpperCase()]: Number((Math.round(day.close * 100) / 100).toFixed(2)),
     }));
   },
 };

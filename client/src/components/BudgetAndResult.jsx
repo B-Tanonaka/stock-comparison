@@ -19,7 +19,6 @@ function BudgetAndResult({
         data: '',
         high: 0,
         low: Infinity,
-        gains: 0,
       });
     } else if (tick === '2') {
       setTicker2({
@@ -27,7 +26,6 @@ function BudgetAndResult({
         data: '',
         high: 0,
         low: Infinity,
-        gains: 0,
       });
     }
   };
@@ -36,7 +34,7 @@ function BudgetAndResult({
     const firstDayPrice = stock.data[0][stock.name];
     const todayPrice = stock.data[stock.data.length - 1][stock.name];
     const shares = budget / firstDayPrice;
-    return Math.round(((shares * todayPrice) - budget) * 100) / 100;
+    return (Math.round(((shares * todayPrice) - budget) * 100) / 100).toFixed(2);
   };
 
   // Calculate total gains for ticker1

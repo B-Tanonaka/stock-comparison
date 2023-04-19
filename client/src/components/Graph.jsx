@@ -14,11 +14,23 @@ function Graph({ ticker1, ticker2, tickerAll }) {
     tickerAll.length > 0 ? tickerAll : ticker1.data || ticker2.data
   );
 
+  const calculateDomain = (data) => {
+    if (data < 50) {
+      return (Math.ceil((data - (data * (1 / 20))) / 5) * 5);
+    }
+    if (data >= 50 && data <= 100) {
+      return (Math.ceil((data - (data * (1 / 20))) / 10) * 10);
+    }
+    if (data > 100) {
+      return (Math.ceil((data - (data * (1 / 20))) / 25) * 25);
+    }
+  };
+
   return (
     <div>
       <LineChart width={1000} height={300} data={determineDataSet()}>
         <XAxis tick={false} dataKey="date" />
-        <YAxis type="number" domain={['datamin - 10%', 'auto']} />
+        <YAxis type="number" domain={['auto', (dataMax) => (calculateDomain(dataMax))]} />
         <CartesianGrid stroke="#eee" strokeDasharray="3 3" />
         <Tooltip />
         <Legend verticalAlign="top" height={36} />

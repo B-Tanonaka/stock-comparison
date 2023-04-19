@@ -13,9 +13,9 @@ function HighLow({
     share.data && (
     <div key={i}>
       <div>{share.name}</div>
-      <div>High: {share.high}</div>
-      <div>Low: {share.low}</div>
-      <div>Capital: {gains[share.ticker]}</div>
+      <div>High: {`$${share.high}`}</div>
+      <div>Low: {`$${share.low}`}</div>
+      <div>Capital: {`$${gains[share.ticker]}`}</div>
     </div>
     )
   );
