@@ -1,6 +1,12 @@
 import React from 'react';
 
-function Search({ getStockInfo, searchQuery, setSearchQuery, budget, setBudget }) {
+function Search({
+  getStockInfo,
+  searchQuery,
+  setSearchQuery,
+  budget,
+  setBudget,
+}) {
   const handleStock = (e) => {
     e.preventDefault();
     setSearchQuery({ ...searchQuery, [e.target.name]: e.target.value.toUpperCase() });

@@ -18,7 +18,7 @@ function Graph({ ticker1, ticker2, tickerAll }) {
     <div>
       <LineChart width={1000} height={300} data={determineDataSet()}>
         <XAxis tick={false} dataKey="date" />
-        <YAxis type="number" domain={['datamin', 'auto']} />
+        <YAxis type="number" domain={['datamin - 10%', 'auto']} />
         <CartesianGrid stroke="#eee" strokeDasharray="3 3" />
         <Tooltip />
         <Legend verticalAlign="top" height={36} />

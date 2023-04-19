@@ -9,6 +9,7 @@ function BudgetAndResult({
   setTickerAll,
   gains,
   setGains,
+  numberCommas,
 }) {
   const resetTicker = (tick) => {
     setTickerAll({});
@@ -41,15 +42,19 @@ function BudgetAndResult({
     <div>
       <div className="ticker-names">
         <div>
-          <div>{ticker1.name}: {`$${gains.ticker1}`}</div>
+          <div>
+            {ticker1.data && `${ticker1.name}: ${numberCommas(gains.ticker1)}`}
+          </div>
           <span onClick={() => resetTicker('1')}>X</span>
         </div>
         <div>
-          <div>{ticker2.name}: {`$${gains.ticker2}`}</div>
+          <div>
+            {ticker2.data && `${ticker2.name}: ${numberCommas(gains.ticker2)}`}
+          </div>
           <span onClick={() => resetTicker('2')}>X</span>
         </div>
       </div>
-      <div>{`$${budget}`}</div>
+      <div>{numberCommas(budget)}</div>
     </div>
   );
 }

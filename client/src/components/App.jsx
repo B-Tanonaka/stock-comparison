@@ -4,7 +4,6 @@ import Graph from './Graph';
 import Search from './Search';
 import BudgetAndResult from './BudgetAndResult';
 import sampleData from '../sampleData';
-const moment = require('moment');
 
 function App() {
   // const [ticker1, setTicker1] = useState(sampleData[1]);
@@ -43,6 +42,11 @@ function App() {
     }
   }, [ticker1, ticker2]);
 
+  // Give numbers commas
+  const numberCommas = (num) => (
+    `$${num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`
+  );
+
   return (
     <div>
       <Search
@@ -51,6 +55,7 @@ function App() {
         setSearchQuery={setSearchQuery}
         budget={budget}
         setBudget={setBudget}
+        numberCommas={numberCommas}
       />
       <BudgetAndResult
         budget={budget}
@@ -62,12 +67,13 @@ function App() {
         searchQuery={searchQuery}
         gains={gains}
         setGains={setGains}
+        numberCommas={numberCommas}
       />
-      <button onClick={() =>
+      {/* <button onClick={() =>
         {console.log("ticker1Data: ", ticker1,
         "ticker2Data: ", ticker2,
         "budget: ", budget,
-        "tickerAll: ", tickerAll)}}>Test the data</button>
+        "tickerAll: ", tickerAll)}}>Test the data</button> */}
       <Graph ticker1={ticker1} ticker2={ticker2} tickerAll={tickerAll} />
     </div>
   );
