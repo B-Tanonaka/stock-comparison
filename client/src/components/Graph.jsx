@@ -30,7 +30,8 @@ function Graph({ ticker1, ticker2, tickerAll }) {
     <div>
       <LineChart width={1000} height={300} data={determineDataSet()}>
         <XAxis tick={false} dataKey="date" />
-        <YAxis type="number" domain={['auto', (dataMax) => (calculateDomain(dataMax))]} />
+        {!(ticker1.data || ticker2.data) && <YAxis type="number" domain={[0, 100]} />}
+        {(ticker1.data || ticker2.data) && <YAxis type="number" domain={[('auto'), (dataMax) => (calculateDomain(dataMax))]} />}
         <CartesianGrid stroke="#eee" strokeDasharray="3 3" />
         <Tooltip />
         <Legend verticalAlign="top" height={36} />

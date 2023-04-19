@@ -29,9 +29,6 @@ function App() {
   const getStockInfo = (stock, startingDate) => {
     axios.get('/stocks', { params: { ticker: stock, date: startingDate } })
       .then((response) => {
-        if (!tickerAll) {
-          setTickerAll({ name: searchQuery.ticker, data: response.data });
-        }
         if (!ticker1.data && ticker2.name !== searchQuery.ticker) {
           setTicker1({ ...ticker1, name: searchQuery.ticker, data: response.data });
         } else if (!ticker2.data && ticker1.name !== searchQuery.ticker) {
