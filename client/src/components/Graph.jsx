@@ -27,9 +27,9 @@ function Graph({ ticker1, ticker2, tickerAll }) {
     ];
   };
 
-  const determineDataSet = () => {
-    return tickerAll.length > 0 ? tickerAll : ticker1.data
-  };
+  const determineDataSet = () => (
+    tickerAll.length > 0 ? tickerAll : ticker1.data || ticker2.data
+  );
 
   return (
     <div>
