@@ -32,23 +32,22 @@ function BudgetAndResult({
     }
   };
 
+  const calculateGains = (stock) => {
+    const firstDayPrice = stock.data[0][stock.name];
+    const todayPrice = stock.data[stock.data.length - 1][stock.name];
+    const shares = budget / firstDayPrice;
+    return Math.round(((shares * todayPrice) - budget) * 100) / 100;
+  }
+
   // Calculate total gains for ticker1
   useEffect(() => {
     if (ticker1.data) {
-      const t1firstDayPrice = ticker1.data[0][ticker1.name];
-      const t1TodayPrice = ticker1.data[ticker1.data.length - 1][ticker1.name];
-      const t1shares = budget / t1firstDayPrice;
-      const t1totalGains = Math.round(((t1shares * t1TodayPrice) - budget) * 100) / 100;
-      setTicker1((ticker1) => { ticker1.gains = t1totalGains; return ticker1; });
-      console.log('ticker1: ', ticker1);
-      console.log('t1totalGains: ', t1totalGains);
+      const totalGains = calculateGains(ticker1);
+      setGains((gains) => ({ ...gains, ticker1: totalGains }));
     }
     if (ticker2.data) {
-      const t2firstDayPrice = ticker2.data[0][ticker2.name];
-      const t2TodayPrice = ticker2.data[ticker2.data.length - 1][ticker2.name];
-      const t2shares = budget / t2firstDayPrice;
-      const t2totalGains = Math.round(((t2shares * t2TodayPrice) - budget) * 100) / 100;
-      setGains((gains) => { gains.ticker2 = t2totalGains; return gains; });
+      const totalGains = calculateGains(ticker2);
+      setGains((gains) => ({ ...gains, ticker2: totalGains }));
     }
   }, [ticker1, ticker2, budget]);
 
@@ -57,7 +56,7 @@ function BudgetAndResult({
       <div className="ticker-names">
         <div>
           <div>
-            {ticker1.data && `${ticker1.name}: ${numberCommas(ticker1.gains)}`}
+            {ticker1.data && `${ticker1.name}: ${numberCommas(gains.ticker1)}`}
           </div>
           <span onClick={() => resetTicker('1')}>X</span>
         </div>
@@ -74,6 +73,3 @@ function BudgetAndResult({
 }
 
 export default BudgetAndResult;
-
-
-// moment(day.unix).format('MMMM do, YYYY') === searchQuery.date
