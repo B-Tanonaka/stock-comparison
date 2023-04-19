@@ -3,13 +3,24 @@ import axios from 'axios';
 import Graph from './Graph';
 import Search from './Search';
 import BudgetAndResult from './BudgetAndResult';
+import HighLow from './HighLow';
 import sampleData from '../sampleData';
 
 function App() {
   // const [ticker1, setTicker1] = useState(sampleData[1]);
   // const [ticker2, setTicker2] = useState(sampleData[0]);
-  const [ticker1, setTicker1] = useState({ name: '', data: '', high: '', low: '' });
-  const [ticker2, setTicker2] = useState({ name: '', data: '', high: '', low: '' });
+  const [ticker1, setTicker1] = useState({
+    name: '',
+    data: '',
+    high: 0,
+    low: Infinity,
+  });
+  const [ticker2, setTicker2] = useState({
+    name: '',
+    data: '',
+    high: 0,
+    low: Infinity,
+  });
   const [tickerAll, setTickerAll] = useState({});
   const [searchQuery, setSearchQuery] = useState({ ticker: '', date: '' });
   const [budget, setBudget] = useState(10000);
@@ -23,9 +34,9 @@ function App() {
           setTickerAll({ name: searchQuery.ticker, data: response.data });
         }
         if (!ticker1.data && ticker2.name !== searchQuery.ticker) {
-          setTicker1({ name: searchQuery.ticker, data: response.data });
+          setTicker1({ ...ticker1, name: searchQuery.ticker, data: response.data });
         } else if (!ticker2.data && ticker1.name !== searchQuery.ticker) {
-          setTicker2({ name: searchQuery.ticker, data: response.data });
+          setTicker2({ ...ticker2, name: searchQuery.ticker, data: response.data });
         }
       })
       .catch((err) => console.error(err));
@@ -75,6 +86,12 @@ function App() {
         "budget: ", budget,
         "tickerAll: ", tickerAll)}}>Test the data</button> */}
       <Graph ticker1={ticker1} ticker2={ticker2} tickerAll={tickerAll} />
+      <HighLow
+        ticker1={ticker1}
+        ticker2={ticker2}
+        setTicker1={setTicker1}
+        setTicker2={setTicker2}
+      />
     </div>
   );
 }
