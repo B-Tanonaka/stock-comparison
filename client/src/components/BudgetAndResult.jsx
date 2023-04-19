@@ -1,7 +1,16 @@
 import React, { useEffect } from 'react';
 const moment = require('moment');
 
-function BudgetAndResult({ budget, ticker1, ticker2, setTicker1, setTicker2, setTickerAll, searchQuery, gains, setGains }) {
+function BudgetAndResult({
+  budget,
+  ticker1,
+  ticker2,
+  setTicker1,
+  setTicker2,
+  setTickerAll,
+  searchQuery,
+  gains,
+  setGains }) {
   const resetTicker = (tick) => {
     setTickerAll({});
     if (tick === '1') {
@@ -11,17 +20,23 @@ function BudgetAndResult({ budget, ticker1, ticker2, setTicker1, setTicker2, set
     }
   };
 
-  // const calculateEarning = () => {
   useEffect(() => {
-    // const tickers = [ticker1, ticker2];
     if (ticker1.data) {
-      const firstDay = ticker1.data.filter(
-        (day) => moment(day.unix).format('YYYY-MM-DD')
-        === searchQuery.date,
-      );
-      // let shares = budget / firstDay[0][ticker1]
+      const t1firstDayPrice = ticker1.data[ticker1.data.length - 1][ticker1.name];
+      const t1shares = budget / t1firstDayPrice;
+      console.log('t1shares: ', t1shares);
+      setGains({ ...gains, ticker1: t1shares });
     }
-  }, [ticker1, ticker2]);
+  }, [ticker1]);
+
+  useEffect(() => {
+    if (ticker2.data) {
+      const t2firstDayPrice = ticker2.data[ticker2.data.length - 1][ticker2.name];
+      const t2shares = budget / t2firstDayPrice;
+      console.log('t2shares: ', t2shares);
+      setGains({ ...gains, ticker2: t2shares });
+    }
+  }, [ticker2]);
 
   return (
     <div>

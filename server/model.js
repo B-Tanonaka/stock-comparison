@@ -6,8 +6,8 @@ module.exports = {
     const queryOptions = { period1: date, interval: '1d' };
     const data = await yahooFinance._chart(query, queryOptions);
     return data.quotes.map((day) => ({
-      date: moment(day.date).format('MMMM do, YYYY'),
-      unix: day.date,
+      date: moment(day.date).format('LL'),
+      utc: day.date,
       [query.toUpperCase()]: Math.round(day.close * 100) / 100,
     }));
   },
