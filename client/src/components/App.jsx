@@ -11,22 +11,30 @@ function App() {
   // const [ticker1, setTicker1] = useState(sampleData[1]);
   // const [ticker2, setTicker2] = useState(sampleData[0]);
   const [ticker2, setTicker2] = useState({ name: '', data: '' });
-  const [tickerAll, setTickerAll] = useState([]);
+  const [tickerAll, setTickerAll] = useState({});
   const [searchQuery, setSearchQuery] = useState({ ticker: '', date: '' });
   const [budget, setBudget] = useState('');
 
+  console.log('ticker1: ', ticker1);
+  console.log('ticker2: ', ticker2);
+  console.log('tickerAll: ', tickerAll);
+  // Get request that filters data based on what state is empty
   const getStockInfo = (stock, startingDate) => {
     axios.get('/stocks', { params: { ticker: stock, date: startingDate } })
       .then((response) => {
+        if (!tickerAll) {
+          setTickerAll({ name: searchQuery.ticker, data: response.data });
+        }
         if (!ticker1.data) {
           setTicker1({ name: searchQuery.ticker, data: response.data });
         } else if (!ticker2.data && ticker1.name !== searchQuery.ticker) {
-          setTicker2({ name: searchQuery.ticker.toUpperCase(), data: response.data });
+          setTicker2({ name: searchQuery.ticker, data: response.data });
         }
       })
       .catch((err) => console.error(err));
   };
 
+  // Combine ticker1 and ticker2 into tickerAll
   useEffect(() => {
     if (ticker1.data && ticker2.data) {
       const tickerAllCombined = ticker1.data.map((t1Day) => ({
@@ -36,9 +44,6 @@ function App() {
       setTickerAll(tickerAllCombined);
     }
   }, [ticker1, ticker2]);
-
-  // console.log("tickerAll: ", tickerAll);
-  console.log("tickerAll: ", tickerAll);
 
   return (
     <div>

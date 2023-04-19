@@ -9,8 +9,6 @@ import {
   Legend,
 } from 'recharts';
 
-const moment = require('moment');
-
 function Graph({ ticker1, ticker2, tickerAll }) {
   const [range, setRange] = useState({ low: Infinity, high: 0 });
 
@@ -31,19 +29,19 @@ function Graph({ ticker1, ticker2, tickerAll }) {
 
   const determineDataSet = () => {
     return tickerAll.length > 0 ? tickerAll : ticker1.data
-  }
+  };
 
   return (
     <div>
-        <LineChart width={1000} height={300} data={determineDataSet()}>
-          <XAxis dataKey="date" />
-          <YAxis />
-          <CartesianGrid stroke="#eee" strokeDasharray="3 3" />
-          <Tooltip />
-          <Legend verticalAlign="top" height={36} />
-          {ticker1.data && <Line type="monotone" dataKey={ticker1.name} stroke="#8884d8" />}
-          {ticker2.data && <Line type="monotone" dataKey={ticker2.name} stroke="#000" />}
-        </LineChart>
+      <LineChart width={1000} height={300} data={tickerAll}>
+        <XAxis dataKey="date" />
+        <YAxis />
+        <CartesianGrid stroke="#eee" strokeDasharray="3 3" />
+        <Tooltip />
+        <Legend verticalAlign="top" height={36} />
+        {ticker1.data && <Line type="monotone" dataKey={ticker1.name} stroke="#8884d8" />}
+        {ticker2.data && <Line type="monotone" dataKey={ticker2.name} stroke="#000" />}
+      </LineChart>
     </div>
   );
 }
