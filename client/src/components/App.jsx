@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Graph from './Graph';
-import Graph2 from './Graph2';
 import Search from './Search';
 import BudgetAndResult from './BudgetAndResult';
 import sampleData from '../sampleData';
 
 function App() {
-  // const [ticker1, setTicker1] = useState(sampleData[1]);
-  // const [ticker2, setTicker2] = useState(sampleData[0]);
-  const [ticker1, setTicker1] = useState({ name: '', data: '' });
-  const [ticker2, setTicker2] = useState({ name: '', data: '' });
+  const [ticker1, setTicker1] = useState(sampleData[1]);
+  const [ticker2, setTicker2] = useState(sampleData[0]);
+  // const [ticker1, setTicker1] = useState({ name: '', data: '' });
+  // const [ticker2, setTicker2] = useState({ name: '', data: '' });
   const [tickerAll, setTickerAll] = useState({});
   const [searchQuery, setSearchQuery] = useState({ ticker: '', date: '' });
   const [budget, setBudget] = useState('');
@@ -38,7 +37,6 @@ function App() {
         ...ticker2.data.find((t2Day) => (t1Day.date === t2Day.date) && t2Day),
         ...t1Day,
       }));
-      console.log(tickerAllCombined);
       setTickerAll(tickerAllCombined);
     }
   }, [ticker1, ticker2]);

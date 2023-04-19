@@ -10,23 +10,6 @@ import {
 } from 'recharts';
 
 function Graph({ ticker1, ticker2, tickerAll }) {
-  const [range, setRange] = useState({ low: Infinity, high: 0 });
-
-  const findRange = () => {
-    ticker1.data.forEach((day) => {
-      if (day[ticker1.name] < range.low) {
-        setRange({ ...range, low: day[ticker1.name] });
-      }
-      if (day[ticker1.name] > range.high) {
-        setRange({ ...range, high: day[ticker1.name] });
-      }
-    });
-    return [
-      Math.round((range.low * .9) / 25) * 25,
-      Math.round(range.high / 25) * 25,
-    ];
-  };
-
   const determineDataSet = () => (
     tickerAll.length > 0 ? tickerAll : ticker1.data || ticker2.data
   );
@@ -34,8 +17,8 @@ function Graph({ ticker1, ticker2, tickerAll }) {
   return (
     <div>
       <LineChart width={1000} height={300} data={determineDataSet()}>
-        <XAxis dataKey="date" />
-        <YAxis />
+        <XAxis tick={false} dataKey="date" />
+        <YAxis type="number" domain={['datamin', 'auto']} />
         <CartesianGrid stroke="#eee" strokeDasharray="3 3" />
         <Tooltip />
         <Legend verticalAlign="top" height={36} />
