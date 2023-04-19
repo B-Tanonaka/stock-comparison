@@ -4,15 +4,23 @@ import Graph from './Graph';
 import Search from './Search';
 import BudgetAndResult from './BudgetAndResult';
 import sampleData from '../sampleData';
+const moment = require('moment');
 
 function App() {
-  const [ticker1, setTicker1] = useState(sampleData[1]);
+  // const [ticker1, setTicker1] = useState(sampleData[1]);
   const [ticker2, setTicker2] = useState(sampleData[0]);
-  // const [ticker1, setTicker1] = useState({ name: '', data: '' });
+  const [ticker1, setTicker1] = useState({ name: '', data: '' });
   // const [ticker2, setTicker2] = useState({ name: '', data: '' });
   const [tickerAll, setTickerAll] = useState({});
   const [searchQuery, setSearchQuery] = useState({ ticker: '', date: '' });
   const [budget, setBudget] = useState('');
+  const [gains, setGains] = useState({ ticker1: 0, ticker2: 0 });
+
+  // if (ticker1.data) {
+  //   let a = moment(ticker1.data[0].unix).format('YYYY-MM-DD');
+  //   // console.log('ticker date: ', ticker1.data[0].date);
+  //   console.log('test:', a);
+  // }
 
   // Get request that filters data based on what state is empty
   const getStockInfo = (stock, startingDate) => {
@@ -57,6 +65,9 @@ function App() {
         setTicker1={setTicker1}
         setTicker2={setTicker2}
         setTickerAll={setTickerAll}
+        searchQuery={searchQuery}
+        gains={gains}
+        setGains={setGains}
       />
       <button onClick={() =>
         {console.log("ticker1Data: ", ticker1,

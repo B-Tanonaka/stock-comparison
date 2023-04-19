@@ -7,7 +7,11 @@ module.exports = {
     const data = await yahooFinance._chart(query, queryOptions);
     return data.quotes.map((day) => ({
       date: moment(day.date).format('MMMM do, YYYY'),
+      unix: day.date,
       [query.toUpperCase()]: Math.round(day.close * 100) / 100,
     }));
   },
 };
+
+
+// date: moment(day.date).format('MMMM do, YYYY'),
