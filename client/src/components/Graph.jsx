@@ -33,7 +33,7 @@ function Graph({ ticker1, ticker2, tickerAll }) {
 
   return (
     <div>
-      <LineChart width={1000} height={300} data={tickerAll}>
+      <LineChart width={1000} height={300} data={determineDataSet()}>
         <XAxis dataKey="date" />
         <YAxis />
         <CartesianGrid stroke="#eee" strokeDasharray="3 3" />
