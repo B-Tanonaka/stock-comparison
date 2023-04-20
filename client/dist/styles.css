@@ -88,6 +88,8 @@ input:-webkit-autofill:active {
 
 body {
   font-family: 'Manrope', sans-serif;
+  background-color: var(--main-gray);
+  color: #fff;
 }
 
 
@@ -108,9 +110,14 @@ body {
   z-index: 10;
 }
 
+.navbar-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+}
+
 .navbar-title {
-  position: absolute;
-  left: 20px;
   color: var(--white-color);
   font-family: 'Headland One', serif;
   font-size: 25px;
