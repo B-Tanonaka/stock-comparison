@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-function HighLow({
+function StockCards({
   ticker1,
   ticker2,
   setTicker1,
@@ -51,4 +51,4 @@ function HighLow({
   );
 }
 
-export default HighLow;
+export default StockCards;

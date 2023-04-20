@@ -117,11 +117,15 @@ p {
   font-size: 40px;
 }
 
-/***** Center *****/
+/***** Spacers *****/
 
 .column-1-3-1 {
   margin-left: 20%;
   margin-right: 20%;
+}
+
+.bottom-5 {
+  margin-bottom: 5%;
 }
 
 /***** Navbar *****/
@@ -262,12 +266,12 @@ p {
 
 .stock-left-bubble {
   position: absolute;
-  left: 10%;
+  left: 18%;
 }
 
 .stock-right-bubble {
   position: absolute;
-  right: 10%;
+  right: 18%;
 }
 
 .stock-right {

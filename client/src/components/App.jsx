@@ -4,26 +4,26 @@ import Graph from './Graph';
 import Navbar from './Navbar';
 import GainsAndResult from './GainsAndResult';
 import DateAndBudget from './DateAndBudget';
-import HighLow from './HighLow';
+import StockCards from './StockCards';
 import SampleData from '../sampleData';
 
 function App() {
-  const [ticker1, setTicker1] = useState(SampleData[0]);
-  const [ticker2, setTicker2] = useState(SampleData[1]);
-  // const [ticker1, setTicker1] = useState({
-  //   ticker: 'ticker1',
-  //   name: '',
-  //   data: '',
-  //   high: 0,
-  //   low: Infinity,
-  // });
-  // const [ticker2, setTicker2] = useState({
-  //   ticker: 'ticker2',
-  //   name: '',
-  //   data: '',
-  //   high: 0,
-  //   low: Infinity,
-  // });
+  // const [ticker1, setTicker1] = useState(SampleData[0]);
+  // const [ticker2, setTicker2] = useState(SampleData[1]);
+  const [ticker1, setTicker1] = useState({
+    ticker: 'ticker1',
+    name: '',
+    data: '',
+    high: 0,
+    low: Infinity,
+  });
+  const [ticker2, setTicker2] = useState({
+    ticker: 'ticker2',
+    name: '',
+    data: '',
+    high: 0,
+    low: Infinity,
+  });
   const [tickerAll, setTickerAll] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
   const [searchDate, setSearchDate] = useState('2023-01-01');
@@ -34,7 +34,7 @@ function App() {
   const getStockInfo = (stock, startingDate) => {
     axios.get('/stocks', { params: { ticker: stock, date: startingDate } })
       .then((response) => {
-        if (ticker1.name === stock) {
+        if (!ticker1.data && ticker2.name !== searchQuery) {
           setTicker1({ ...ticker1, name: searchQuery, data: response.data });
         } else if (!ticker2.data && ticker1.name !== searchQuery) {
           setTicker2({ ...ticker2, name: searchQuery, data: response.data });
@@ -112,13 +112,16 @@ function App() {
           "budget: ", budget,
           "tickerAll: ", tickerAll)}}>Test the data</button> */}
         <Graph ticker1={ticker1} ticker2={ticker2} tickerAll={tickerAll} />
-        <HighLow
-          ticker1={ticker1}
-          ticker2={ticker2}
-          setTicker1={setTicker1}
-          setTicker2={setTicker2}
-        />
+        <div className="high-low-spacer">
+          <StockCards
+            ticker1={ticker1}
+            ticker2={ticker2}
+            setTicker1={setTicker1}
+            setTicker2={setTicker2}
+          />
+        </div>
       </div>
+      <div className="bottom-5" />
     </div>
   );
 }
