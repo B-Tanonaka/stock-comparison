@@ -42,9 +42,6 @@ function App() {
     }
   };
 
-  console.log('ticker1: ', ticker1);
-  // console.log('ticker2: ', ticker2);
-
   // Get request that filters data based on what state is empty
   const getStockInfo = (stock, startingDate) => {
     axios.get('/stocks', { params: { ticker: stock, date: startingDate } })
@@ -69,14 +66,16 @@ function App() {
 
   // Get request that refreshes data based new date
   const getRefreshStocks = () => {
-    axios.get('/stocks', { params: { ticker: ticker1.ticker, date: searchDate } })
-      .then((response) => {
-        setTicker1({ ...ticker1, data: response.data });
-      }).catch((err) => console.error(err));
-    axios.get('/stocks', { params: { ticker: ticker2.ticker, date: searchDate } })
-      .then((response) => {
-        setTicker2({ ...ticker2, data: response.data });
-      }).catch((err) => console.error(err));
+    if (ticker1.data || ticker2.data) {
+      axios.get('/stocks', { params: { ticker: ticker1.ticker, date: searchDate } })
+        .then((response) => {
+          setTicker1({ ...ticker1, data: response.data });
+        }).catch((err) => console.error(err));
+      axios.get('/stocks', { params: { ticker: ticker2.ticker, date: searchDate } })
+        .then((response) => {
+          setTicker2({ ...ticker2, data: response.data });
+        }).catch((err) => console.error(err));
+    }
   };
 
   // Combine ticker1 and ticker2 into tickerAll
