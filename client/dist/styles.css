@@ -104,6 +104,8 @@ body {
   font-family: 'Manrope', sans-serif;
   background-color: var(--main-green);
   color: var(--main-white);
+  background-image: url('./assets/paper-texture.jpg');
+  background-blend-mode: multiply;
 }
 
 h4 {
@@ -140,6 +142,7 @@ p {
 }
 
 .navbar {
+  position: fixed;
   background-color: var(--main-gray);
   color: var(--white-color);
   display: flex;
@@ -148,6 +151,7 @@ p {
   height: 60px;
   top: 0;
   z-index: 10;
+  border-bottom: solid 5px var(--main-white);
 }
 
 .navbar-title-container {
