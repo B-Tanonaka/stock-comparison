@@ -295,6 +295,8 @@ const sampleData = [
         AAPL: 166.47000122070312,
       },
     ],
+    high: 103.34,
+    low: 78.21,
   },
   {
     name: 'MSFT',
@@ -592,6 +594,8 @@ const sampleData = [
         MSFT: 288.3699951171875,
       },
     ],
+    high: 300.94,
+    low: 276.90,
   },
 ];
 // const months = {

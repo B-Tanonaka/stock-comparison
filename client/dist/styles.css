@@ -306,3 +306,61 @@ p.recharts-tooltip-label {
   font-size: 15px;
   font-weight: bold;
 }
+
+/***** Stock card *****/
+
+.stock-card-container {
+  display: flex;
+  justify-content: center;
+}
+
+.stock-card {
+  width: 160px;
+  height: 150px;
+  border: solid 1px #474742;
+  position: relative;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.stock-card-name {
+  position: absolute;
+  font-size: 15px;
+  top: 15px;
+  left: 15px;
+}
+
+.stock-card-label {
+  position: absolute;
+  font-size: 13px;
+  left: 15px;
+}
+
+.stock-high-label {
+  bottom: 65px;
+}
+
+.stock-low-label {
+  bottom: 30px;
+}
+
+.stock-card-price {
+  position: absolute;
+  font-size: 8px;
+  left: 15px;
+}
+
+.stock-high-price {
+  bottom: 50px;
+}
+
+.stock-low-price {
+  bottom: 18px;
+}
+
+.stock-card-current-price {
+  position: absolute;
+  font-size: 25px;
+  right: 20px;
+  bottom: 15px;
+}

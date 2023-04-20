@@ -117,7 +117,6 @@ function App() {
           ticker2={ticker2}
           setTicker1={setTicker1}
           setTicker2={setTicker2}
-          gains={gains}
         />
       </div>
     </div>

@@ -5,17 +5,18 @@ function HighLow({
   ticker2,
   setTicker1,
   setTicker2,
-  gains,
 }) {
   const tickerSet = [ticker1, ticker2];
 
   const renderCards = (share, i) => (
     share.data && (
-    <div key={i}>
-      <div>{share.name}</div>
-      <div>High: {`$${share.high}`}</div>
-      <div>Low: {`$${share.low}`}</div>
-      <div>Capital: {`$${gains[share.ticker]}`}</div>
+    <div className="stock-card" key={i}>
+      <div className="stock-card-name">{share.name}</div>
+      <span className="stock-card-label stock-high-label">High</span>
+      <div className="stock-card-price stock-high-price">{`$${share.high}`}</div>
+      <span className="stock-card-label stock-low-label">Low</span>
+      <div className="stock-card-price stock-low-price">{`$${share.low}`}</div>
+      <div className="stock-card-current-price">{share.data[share.data.length - 1][share.name]}</div>
     </div>
     )
   );
@@ -44,7 +45,7 @@ function HighLow({
   }, [ticker1, ticker2]);
 
   return (
-    <div>
+    <div className="stock-card-container">
       {tickerSet.map((stock, i) => renderCards(stock, i))}
     </div>
   );
