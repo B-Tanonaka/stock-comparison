@@ -31,11 +31,12 @@ function Graph({ ticker1, ticker2, tickerAll }) {
     <div className="graph-container">
       <ResponsiveContainer width="80%" height={350}>
         <LineChart data={determineDataSet()} key={Math.random()}>
-          <XAxis tick={false} dataKey="date" />
-          {!(ticker1.data || ticker2.data) && <YAxis type="number" domain={[0, 100]} />}
+        <CartesianGrid stroke="#404045" strokeDasharray="3 3" />
+          <XAxis tick={false} dataKey="date" stroke="white" />
+          {!(ticker1.data || ticker2.data) && <YAxis type="number" domain={[0, 100]} tick={{ fill: '#FCFCFC' }} stroke="#FCFCFC" />}
           {/* {(ticker1.data || ticker2.data) && <YAxis type="number" domain={[('auto'), (dataMax) => (calculateDomain(dataMax))]} />} */}
-          {(ticker1.data || ticker2.data) && <YAxis type="number" domain={['dataMin', 'auto']} />}
-          <CartesianGrid stroke="#404045" strokeDasharray="3 3" />
+          {(ticker1.data || ticker2.data) && <YAxis type="number" domain={['dataMin', 'auto']} tick={{ fill: '#FCFCFC' }} stroke="#FCFCFC" />}
+
           <Tooltip />
           <Legend verticalAlign="top" height={36} />
           {ticker1.data && <Line type="monotone" dataKey={ticker1.name} stroke="#8884d8" dot={false} />}

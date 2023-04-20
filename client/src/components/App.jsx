@@ -10,7 +10,7 @@ import SampleData from '../sampleData';
 
 function App() {
   const [ticker1, setTicker1] = useState(SampleData[0]);
-  const [ticker2, setTicker2] = useState(SampleData[1]);
+  // const [ticker2, setTicker2] = useState(SampleData[1]);
   // const [ticker1, setTicker1] = useState({
   //   ticker: 'ticker1',
   //   name: '',
@@ -18,13 +18,13 @@ function App() {
   //   high: 0,
   //   low: Infinity,
   // });
-  // const [ticker2, setTicker2] = useState({
-  //   ticker: 'ticker2',
-  //   name: '',
-  //   data: '',
-  //   high: 0,
-  //   low: Infinity,
-  // });
+  const [ticker2, setTicker2] = useState({
+    ticker: 'ticker2',
+    name: '',
+    data: '',
+    high: 0,
+    low: Infinity,
+  });
   const [tickerAll, setTickerAll] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
   const [searchDate, setSearchDate] = useState('2023-01-01');

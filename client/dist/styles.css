@@ -328,6 +328,7 @@ p.recharts-tooltip-label {
   font-weight: bold;
 }
 
+
 /***** Stock card *****/
 
 .stock-card-spacer {
@@ -405,5 +406,5 @@ p.recharts-tooltip-label {
 .show-money-guy {
   position: absolute;
   width: 400px;
-  top: 200px;
+  top: 125px;
 }
