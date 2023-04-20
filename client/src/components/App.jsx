@@ -22,8 +22,8 @@ function App() {
     low: Infinity,
   });
   const [tickerAll, setTickerAll] = useState({});
-  const [searchQuery, setSearchQuery] = useState({ ticker: '', date: '' });
-  const [budget, setBudget] = useState('');
+  const [searchQuery, setSearchQuery] = useState({ ticker: '', date: '2023-01-01' });
+  const [budget, setBudget] = useState(5000);
   const [gains, setGains] = useState({ ticker1: 0, ticker2: 0 });
 
   // Get request that filters data based on what state is empty
