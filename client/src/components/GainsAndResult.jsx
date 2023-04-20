@@ -32,8 +32,8 @@ function GainsAndResult({
   };
 
   const calculateGains = (stock) => {
-    const firstDayPrice = stock.data[0][stock.name];
-    const todayPrice = stock.data[stock.data.length - 1][stock.name];
+    const firstDayPrice = stock.data[0][stock.ticker];
+    const todayPrice = stock.data[stock.data.length - 1][stock.ticker];
     const shares = budget / firstDayPrice;
     return (Math.round(((shares * todayPrice) - budget) * 100) / 100).toFixed(2);
   };
@@ -63,8 +63,8 @@ function GainsAndResult({
           {ticker1.data
           && (
           <div className="stock-info-wrapper stock-left">
-            <div className="stock-info-name stock-left" onClick={() => resetTicker('1')}>PpgFholder</div>
-            <div className="stock-info-ticker stock-left">{`${ticker1.name}`}</div>
+            <div className="stock-info-name stock-left" onClick={() => resetTicker('1')}>{ticker1.name}</div>
+            <div className="stock-info-ticker stock-left">{`${ticker1.ticker}`}</div>
             <div className="stock-info-gains stock-left">{numberCommas(gains.ticker1)}</div>
           </div>
           )}
@@ -73,8 +73,8 @@ function GainsAndResult({
           {ticker2.data
             && (
             <div className="stock-info-wrapper stock-right">
-              <div className="stock-info-name stock-right" onClick={() => resetTicker('2')}>PpgFholdgq</div>
-              <div className="stock-info-ticker stock-right">{`${ticker2.name}`}</div>
+              <div className="stock-info-name stock-right" onClick={() => resetTicker('2')}>{ticker2.name}</div>
+              <div className="stock-info-ticker stock-right">{`${ticker2.ticker}`}</div>
               <div className="stock-info-gains stock-right">{numberCommas(gains.ticker2)}</div>
             </div>
             )}

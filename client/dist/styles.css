@@ -91,6 +91,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   padding-inline-start: 10px;
 }
 
+input[type="date"] {
+  cursor: pointer;
+}
+
 /* input[type="date"]::-webkit-clear-button {
   filter: invert(100%);
 } */
@@ -234,6 +238,10 @@ p {
 
 .budget-box {
   width: 125px;
+}
+
+.date-box:hover {
+  cursor: pointer;
 }
 
 /***** Stock information *****/

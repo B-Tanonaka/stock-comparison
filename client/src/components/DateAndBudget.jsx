@@ -15,7 +15,7 @@ function DateAndBudget({
     <div className="date-budget-container">
       <div className="date-budget-wrapper">
         <span className="date-budget-text">Date</span>
-        <input name="date" placeholder="date" type="date" value={searchDate} onChange={handleStock} className="date-budget-search" />
+        <input name="date" placeholder="date" type="date" value={searchDate} onChange={handleStock} className="date-budget-search date-box" />
       </div>
       <div className="date-budget-wrapper">
         <span className="date-budget-text">Budget</span>

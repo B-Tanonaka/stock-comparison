@@ -23,10 +23,10 @@ module.exports = {
     let name;
     const queryOptions = { fields: ['displayName'] };
     try {
-      name = await yahooFinance.search(query);
+      name = await yahooFinance.quote(query, queryOptions);
     } catch (err) {
       console.log(err);
     }
-    return name;
+    return name.displayName;
   },
 };

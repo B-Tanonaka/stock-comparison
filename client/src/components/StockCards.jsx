@@ -16,7 +16,7 @@ function StockCards({
       <div className="stock-card-price stock-high-price">{`$${share.high}`}</div>
       <span className="stock-card-label stock-low-label">Low</span>
       <div className="stock-card-price stock-low-price">{`$${share.low}`}</div>
-      <div className="stock-card-current-price">{share.data[share.data.length - 1][share.name]}</div>
+      <div className="stock-card-current-price">{share.data[share.data.length - 1][share.ticker]}</div>
     </div>
     )
   );
@@ -24,21 +24,21 @@ function StockCards({
   useEffect(() => {
     if (ticker1.data) {
       ticker1.data.forEach((day) => {
-        if (day[ticker1.name] > ticker1.high) {
-          setTicker1({ ...ticker1, high: day[ticker1.name] });
+        if (day[ticker1.ticker] > ticker1.high) {
+          setTicker1({ ...ticker1, high: day[ticker1.ticker] });
         }
-        if (day[ticker1.name] < ticker1.low) {
-          setTicker1({ ...ticker1, low: day[ticker1.name] });
+        if (day[ticker1.ticker] < ticker1.low) {
+          setTicker1({ ...ticker1, low: day[ticker1.ticker] });
         }
       });
     }
     if (ticker2.data) {
       ticker2.data.forEach((day) => {
-        if (day[ticker2.name] > ticker2.high) {
-          setTicker2({ ...ticker2, high: day[ticker2.name] });
+        if (day[ticker2.ticker] > ticker2.high) {
+          setTicker2({ ...ticker2, high: day[ticker2.ticker] });
         }
-        if (day[ticker2.name] < ticker2.low) {
-          setTicker2({ ...ticker2, low: day[ticker2.name] });
+        if (day[ticker2.ticker] < ticker2.low) {
+          setTicker2({ ...ticker2, low: day[ticker2.ticker] });
         }
       });
     }

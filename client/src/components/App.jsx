@@ -9,15 +9,15 @@ import MoneyDance from './MoneyDance';
 import SampleData from '../sampleData';
 
 function App() {
-  const [ticker1, setTicker1] = useState(SampleData[0]);
+  // const [ticker1, setTicker1] = useState(SampleData[0]);
   // const [ticker2, setTicker2] = useState(SampleData[1]);
-  // const [ticker1, setTicker1] = useState({
-  //   ticker: 'ticker1',
-  //   name: '',
-  //   data: '',
-  //   high: 0,
-  //   low: Infinity,
-  // });
+  const [ticker1, setTicker1] = useState({
+    ticker: 'ticker1',
+    name: '',
+    data: '',
+    high: 0,
+    low: Infinity,
+  });
   const [ticker2, setTicker2] = useState({
     ticker: 'ticker2',
     name: '',
@@ -38,30 +38,42 @@ function App() {
       setShowMoney(showMoney + 1);
       setTimeout(() => {
         setShowMoney(2);
-      }, 3000);
+      }, 4000);
     }
   };
+
+  console.log('ticker1: ', ticker1);
+  // console.log('ticker2: ', ticker2);
 
   // Get request that filters data based on what state is empty
   const getStockInfo = (stock, startingDate) => {
     axios.get('/stocks', { params: { ticker: stock, date: startingDate } })
       .then((response) => {
-        if (!ticker1.data && ticker2.name !== searchQuery) {
-          setTicker1({ ...ticker1, name: searchQuery, data: response.data });
-        } else if (!ticker2.data && ticker1.name !== searchQuery) {
-          setTicker2({ ...ticker2, name: searchQuery, data: response.data });
+        if (!ticker1.data && ticker2.ticker !== searchQuery) {
+          setTicker1((ticker1) => ({ ...ticker1, ticker: searchQuery, data: response.data }));
+          console.log('in ticker1 data');
+        } else if (!ticker2.data && ticker1.ticker !== searchQuery) {
+          setTicker2((ticker2) => ({ ...ticker2, ticker: searchQuery, data: response.data }));
         }
-      })
-      .catch((err) => console.error(err));
+      }).catch((err) => console.error(err));
+    axios.get('/stocks/name', { params: { ticker: stock } })
+      .then((response) => {
+        if (!ticker1.data && ticker2.ticker !== searchQuery) {
+          setTicker1((ticker1) => ({ ...ticker1, name: response.data }));
+          console.log('in ticker1 name');
+        } else if (!ticker2.data && ticker1.ticker !== searchQuery) {
+          setTicker2((ticker2) => ({ ...ticker2, name: response.data }));
+        }
+      }).catch((err) => console.error(err));
   };
 
   // Get request that refreshes data based new date
   const getRefreshStocks = () => {
-    axios.get('/stocks', { params: { ticker: ticker1.name, date: searchDate } })
+    axios.get('/stocks', { params: { ticker: ticker1.ticker, date: searchDate } })
       .then((response) => {
         setTicker1({ ...ticker1, data: response.data });
       }).catch((err) => console.error(err));
-    axios.get('/stocks', { params: { ticker: ticker2.name, date: searchDate } })
+    axios.get('/stocks', { params: { ticker: ticker2.ticker, date: searchDate } })
       .then((response) => {
         setTicker2({ ...ticker2, data: response.data });
       }).catch((err) => console.error(err));
@@ -96,7 +108,6 @@ function App() {
     }
   }, [tickerAll]);
 
-  console.log('showMoney: ', showMoney);
   return (
     <div>
       <Navbar
