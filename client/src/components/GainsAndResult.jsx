@@ -51,7 +51,13 @@ function GainsAndResult({
   }, [ticker1, ticker2, budget, searchDate]);
 
   return (
-    <div>
+    <div className="stock-info-umbrella">
+      {(!ticker1.data && !ticker2.data)
+      && (
+      <div className="stock-info-placeholder-container">
+        <div className="stock-info-placeholder">Select your stocks</div>
+      </div>
+      )}
       <div className="stock-info-container">
         <div className="stock-left-bubble">
           {ticker1.data
