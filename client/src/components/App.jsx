@@ -30,14 +30,14 @@ function App() {
   const [searchDate, setSearchDate] = useState('2023-01-01');
   const [budget, setBudget] = useState(5000);
   const [gains, setGains] = useState({ ticker1: 0, ticker2: 0 });
-  const [showMoney, setShowMoney] = useState(false);
+  const [showMoney, setShowMoney] = useState(0);
 
   // For the memes
   const showTheMoney = () => {
     if (ticker1.high > 0 && ticker2.high > 0) {
-      setShowMoney(true);
+      setShowMoney(showMoney + 1);
       setTimeout(() => {
-        setShowMoney(false);
+        setShowMoney(2);
       }, 3000);
     }
   };
@@ -96,7 +96,7 @@ function App() {
     }
   }, [tickerAll]);
 
-  console.log('tickerAll: ', tickerAll);
+  console.log('showMoney: ', showMoney);
   return (
     <div>
       <Navbar

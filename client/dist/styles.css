@@ -390,3 +390,20 @@ p.recharts-tooltip-label {
   right: 20px;
   bottom: 15px;
 }
+
+/***** Memes *****/
+
+.show-money-guy-container {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  width: 100%;
+  z-index: 10;
+
+}
+
+.show-money-guy {
+  position: absolute;
+  width: 400px;
+  top: 200px;
+}
