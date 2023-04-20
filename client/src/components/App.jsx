@@ -5,22 +5,25 @@ import Navbar from './Navbar';
 import GainsAndResult from './GainsAndResult';
 import DateAndBudget from './DateAndBudget';
 import HighLow from './HighLow';
+import SampleData from '../sampleData';
 
 function App() {
-  const [ticker1, setTicker1] = useState({
-    ticker: 'ticker1',
-    name: '',
-    data: '',
-    high: 0,
-    low: Infinity,
-  });
-  const [ticker2, setTicker2] = useState({
-    ticker: 'ticker2',
-    name: '',
-    data: '',
-    high: 0,
-    low: Infinity,
-  });
+  const [ticker1, setTicker1] = useState(SampleData[0]);
+  const [ticker2, setTicker2] = useState(SampleData[1]);
+  // const [ticker1, setTicker1] = useState({
+  //   ticker: 'ticker1',
+  //   name: '',
+  //   data: '',
+  //   high: 0,
+  //   low: Infinity,
+  // });
+  // const [ticker2, setTicker2] = useState({
+  //   ticker: 'ticker2',
+  //   name: '',
+  //   data: '',
+  //   high: 0,
+  //   low: Infinity,
+  // });
   const [tickerAll, setTickerAll] = useState({});
   const [searchQuery, setSearchQuery] = useState({ ticker: '', date: '2023-01-01' });
   const [budget, setBudget] = useState(5000);
@@ -65,37 +68,39 @@ function App() {
         setBudget={setBudget}
         numberCommas={numberCommas}
       />
-      <DateAndBudget
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        budget={budget}
-        setBudget={setBudget}
-      />
-      <GainsAndResult
-        budget={budget}
-        ticker1={ticker1}
-        ticker2={ticker2}
-        setTicker1={setTicker1}
-        setTicker2={setTicker2}
-        setTickerAll={setTickerAll}
-        searchQuery={searchQuery}
-        gains={gains}
-        setGains={setGains}
-        numberCommas={numberCommas}
-      />
-      {/* <button onClick={() =>
-        {console.log("ticker1Data: ", ticker1,
-        "ticker2Data: ", ticker2,
-        "budget: ", budget,
-        "tickerAll: ", tickerAll)}}>Test the data</button> */}
-      <Graph ticker1={ticker1} ticker2={ticker2} tickerAll={tickerAll} />
-      <HighLow
-        ticker1={ticker1}
-        ticker2={ticker2}
-        setTicker1={setTicker1}
-        setTicker2={setTicker2}
-        gains={gains}
-      />
+      <div className="column-1-3-1">
+        <DateAndBudget
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          budget={budget}
+          setBudget={setBudget}
+        />
+        <GainsAndResult
+          budget={budget}
+          ticker1={ticker1}
+          ticker2={ticker2}
+          setTicker1={setTicker1}
+          setTicker2={setTicker2}
+          setTickerAll={setTickerAll}
+          searchQuery={searchQuery}
+          gains={gains}
+          setGains={setGains}
+          numberCommas={numberCommas}
+        />
+        {/* <button onClick={() =>
+          {console.log("ticker1Data: ", ticker1,
+          "ticker2Data: ", ticker2,
+          "budget: ", budget,
+          "tickerAll: ", tickerAll)}}>Test the data</button> */}
+        <Graph ticker1={ticker1} ticker2={ticker2} tickerAll={tickerAll} />
+        <HighLow
+          ticker1={ticker1}
+          ticker2={ticker2}
+          setTicker1={setTicker1}
+          setTicker2={setTicker2}
+          gains={gains}
+        />
+      </div>
     </div>
   );
 }

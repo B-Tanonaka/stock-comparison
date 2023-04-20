@@ -51,21 +51,28 @@ function GainsAndResult({
 
   return (
     <div>
-      <div className="ticker-names">
-        <div>
-          <div>
-            {ticker1.data && `${ticker1.name}: ${numberCommas(gains.ticker1)}`}
+      <div className="stock-info-container">
+        <div className="stock-left-bubble">
+          {ticker1.data
+          && (
+          <div className="stock-info-wrapper stock-left">
+            <div className="stock-info-name stock-left" onClick={() => resetTicker('1')}>PpgFholder</div>
+            <div className="stock-info-ticker stock-left">{`${ticker1.name}`}</div>
+            <div className="stock-info-gains stock-left">{numberCommas(gains.ticker1)}</div>
           </div>
-          <span onClick={() => resetTicker('1')}>X</span>
+          )}
         </div>
-        <div>
-          <div>
-            {ticker2.data && `${ticker2.name}: ${numberCommas(gains.ticker2)}`}
-          </div>
-          <span onClick={() => resetTicker('2')}>X</span>
+        <div className="stock-right-bubble">
+          {ticker2.data
+            && (
+            <div className="stock-info-wrapper stock-right">
+              <div className="stock-info-name stock-right" onClick={() => resetTicker('2')}>PpgFholdgq</div>
+              <div className="stock-info-ticker stock-right">{`${ticker2.name}`}</div>
+              <div className="stock-info-gains stock-right">{numberCommas(gains.ticker2)}</div>
+            </div>
+            )}
         </div>
       </div>
-      <div>{numberCommas(budget)}</div>
     </div>
   );
 }
