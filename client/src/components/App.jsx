@@ -48,7 +48,6 @@ function App() {
       .then((response) => {
         if (!ticker1.data && ticker2.ticker !== searchQuery) {
           setTicker1((ticker1) => ({ ...ticker1, ticker: searchQuery, data: response.data }));
-          console.log('in ticker1 data');
         } else if (!ticker2.data && ticker1.ticker !== searchQuery) {
           setTicker2((ticker2) => ({ ...ticker2, ticker: searchQuery, data: response.data }));
         }
@@ -57,7 +56,6 @@ function App() {
       .then((response) => {
         if (!ticker1.data && ticker2.ticker !== searchQuery) {
           setTicker1((ticker1) => ({ ...ticker1, name: response.data }));
-          console.log('in ticker1 name');
         } else if (!ticker2.data && ticker1.ticker !== searchQuery) {
           setTicker2((ticker2) => ({ ...ticker2, name: response.data }));
         }
@@ -99,6 +97,7 @@ function App() {
     `$${num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`
   );
 
+  // Shows meme after 5 seconds when two data stocks are selected
   useEffect(() => {
     if (ticker1.data && ticker2.data) {
       setTimeout(() => {

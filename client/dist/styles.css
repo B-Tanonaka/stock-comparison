@@ -69,7 +69,8 @@ table {
   --main-gray: #1A1A18;
   --main-green: #1F231F;
   --main-white: #FCFCFC;
-  --sec-green: #519a41;
+  --sec-green: #48CF2A;
+  --sec-red: #FF4040;
   /* --ter-color: #F36074; */
 
   /* Primary grays */
@@ -285,8 +286,14 @@ p {
   margin-bottom: 12%;
 }
 
-.stock-info-gains {
+.stock-info-gains-positive {
   font-size: 25px;
+  color: var(--sec-green);
+}
+
+.stock-info-gains-negative {
+  font-size: 25px;
+  color: var(--sec-red);
 }
 
 .stock-left-bubble {
@@ -408,7 +415,6 @@ p.recharts-tooltip-label {
   justify-content: center;
   width: 100%;
   z-index: 10;
-
 }
 
 .show-money-guy {

@@ -16,6 +16,7 @@ function GainsAndResult({
     setTickerAll({});
     if (tick === '1') {
       setTicker1({
+        ticker: 'ticker1',
         name: '',
         data: '',
         high: 0,
@@ -23,6 +24,7 @@ function GainsAndResult({
       });
     } else if (tick === '2') {
       setTicker2({
+        ticker: 'ticker2',
         name: '',
         data: '',
         high: 0,
@@ -31,6 +33,7 @@ function GainsAndResult({
     }
   };
 
+  // Calculate total gains helper function
   const calculateGains = (stock) => {
     const firstDayPrice = stock.data[0][stock.ticker];
     const todayPrice = stock.data[stock.data.length - 1][stock.ticker];
@@ -38,7 +41,7 @@ function GainsAndResult({
     return (Math.round(((shares * todayPrice) - budget) * 100) / 100).toFixed(2);
   };
 
-  // Calculate total gains for ticker1
+  // Set total gains
   useEffect(() => {
     if (ticker1.data) {
       const totalGains = calculateGains(ticker1);
@@ -49,6 +52,14 @@ function GainsAndResult({
       setGains((gains) => ({ ...gains, ticker2: totalGains }));
     }
   }, [ticker1, ticker2, budget, searchDate]);
+
+  // Set color of gains text
+  const determineGainsColor = (stock) => {
+    if (gains[stock] > 0) {
+      return 'stock-info-gains-positive';
+    }
+    return 'stock-info-gains-negative';
+  };
 
   return (
     <div className="stock-info-umbrella">
@@ -65,7 +76,7 @@ function GainsAndResult({
           <div className="stock-info-wrapper stock-left">
             <div className="stock-info-name stock-left" onClick={() => resetTicker('1')}>{ticker1.name}</div>
             <div className="stock-info-ticker stock-left">{`${ticker1.ticker}`}</div>
-            <div className="stock-info-gains stock-left">{numberCommas(gains.ticker1)}</div>
+            <div className={`${determineGainsColor('ticker1')} stock-left`}>{numberCommas(gains.ticker1)}</div>
           </div>
           )}
         </div>
@@ -75,7 +86,7 @@ function GainsAndResult({
             <div className="stock-info-wrapper stock-right">
               <div className="stock-info-name stock-right" onClick={() => resetTicker('2')}>{ticker2.name}</div>
               <div className="stock-info-ticker stock-right">{`${ticker2.ticker}`}</div>
-              <div className="stock-info-gains stock-right">{numberCommas(gains.ticker2)}</div>
+              <div className={`${determineGainsColor('ticker2')} stock-right`}>{numberCommas(gains.ticker2)}</div>
             </div>
             )}
         </div>
