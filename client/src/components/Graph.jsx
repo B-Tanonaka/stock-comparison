@@ -35,11 +35,11 @@ function Graph({ ticker1, ticker2, tickerAll }) {
           {!(ticker1.data || ticker2.data) && <YAxis type="number" domain={[0, 100]} />}
           {/* {(ticker1.data || ticker2.data) && <YAxis type="number" domain={[('auto'), (dataMax) => (calculateDomain(dataMax))]} />} */}
           {(ticker1.data || ticker2.data) && <YAxis type="number" domain={['dataMin', 'auto']} />}
-          <CartesianGrid stroke="#eee" strokeDasharray="3 3" />
+          <CartesianGrid stroke="#404045" strokeDasharray="3 3" />
           <Tooltip />
           <Legend verticalAlign="top" height={36} />
-          {ticker1.data && <Line type="monotone" dataKey={ticker1.name} stroke="#8884d8" />}
-          {ticker2.data && <Line type="monotone" dataKey={ticker2.name} stroke="#000" />}
+          {ticker1.data && <Line type="monotone" dataKey={ticker1.name} stroke="#8884d8" dot={false} />}
+          {ticker2.data && <Line type="monotone" dataKey={ticker2.name} stroke="#db7f8e" dot={false} />}
         </LineChart>
       </ResponsiveContainer>
     </div>

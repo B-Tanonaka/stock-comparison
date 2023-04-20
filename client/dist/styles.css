@@ -282,6 +282,10 @@ p {
   margin-right: 25px;
 }
 
+.recharts-legend-item-text {
+  font-size: 12px;
+}
+
 .recharts-tooltip-wrapper {
   color: #1A1A18;
   border: none;
