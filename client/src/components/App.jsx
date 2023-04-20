@@ -112,7 +112,7 @@ function App() {
           "budget: ", budget,
           "tickerAll: ", tickerAll)}}>Test the data</button> */}
         <Graph ticker1={ticker1} ticker2={ticker2} tickerAll={tickerAll} />
-        <div className="high-low-spacer">
+        <div className="stock-card-spacer">
           <StockCards
             ticker1={ticker1}
             ticker2={ticker2}

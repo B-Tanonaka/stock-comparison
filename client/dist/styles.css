@@ -330,6 +330,11 @@ p.recharts-tooltip-label {
 
 /***** Stock card *****/
 
+.stock-card-spacer {
+  width: 100%;
+  height: 200px;
+}
+
 .stock-card-container {
   display: flex;
   justify-content: center;
