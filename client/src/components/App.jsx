@@ -5,30 +5,42 @@ import Navbar from './Navbar';
 import GainsAndResult from './GainsAndResult';
 import DateAndBudget from './DateAndBudget';
 import StockCards from './StockCards';
+import MoneyDance from './MoneyDance';
 import SampleData from '../sampleData';
 
 function App() {
-  // const [ticker1, setTicker1] = useState(SampleData[0]);
-  // const [ticker2, setTicker2] = useState(SampleData[1]);
-  const [ticker1, setTicker1] = useState({
-    ticker: 'ticker1',
-    name: '',
-    data: '',
-    high: 0,
-    low: Infinity,
-  });
-  const [ticker2, setTicker2] = useState({
-    ticker: 'ticker2',
-    name: '',
-    data: '',
-    high: 0,
-    low: Infinity,
-  });
+  const [ticker1, setTicker1] = useState(SampleData[0]);
+  const [ticker2, setTicker2] = useState(SampleData[1]);
+  // const [ticker1, setTicker1] = useState({
+  //   ticker: 'ticker1',
+  //   name: '',
+  //   data: '',
+  //   high: 0,
+  //   low: Infinity,
+  // });
+  // const [ticker2, setTicker2] = useState({
+  //   ticker: 'ticker2',
+  //   name: '',
+  //   data: '',
+  //   high: 0,
+  //   low: Infinity,
+  // });
   const [tickerAll, setTickerAll] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
   const [searchDate, setSearchDate] = useState('2023-01-01');
   const [budget, setBudget] = useState(5000);
   const [gains, setGains] = useState({ ticker1: 0, ticker2: 0 });
+  const [showMoney, setShowMoney] = useState(false);
+
+  // For the memes
+  const showTheMoney = () => {
+    if (ticker1.high > 0 && ticker2.high > 0) {
+      setShowMoney(true);
+      setTimeout(() => {
+        setShowMoney(false);
+      }, 3000);
+    }
+  };
 
   // Get request that filters data based on what state is empty
   const getStockInfo = (stock, startingDate) => {
@@ -76,6 +88,15 @@ function App() {
     `$${num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`
   );
 
+  useEffect(() => {
+    if (ticker1.data && ticker2.data) {
+      setTimeout(() => {
+        showTheMoney();
+      }, 5000);
+    }
+  }, [tickerAll]);
+
+  console.log('tickerAll: ', tickerAll);
   return (
     <div>
       <Navbar
@@ -93,6 +114,11 @@ function App() {
           setSearchDate={setSearchDate}
           budget={budget}
           setBudget={setBudget}
+        />
+        <MoneyDance
+          ticker1={ticker1}
+          ticker2={ticker2}
+          showMoney={showMoney}
         />
         <GainsAndResult
           budget={budget}
