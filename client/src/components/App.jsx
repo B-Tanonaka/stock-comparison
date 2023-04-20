@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Graph from './Graph';
-import Search from './Search';
-import BudgetAndResult from './BudgetAndResult';
+import Navbar from './Navbar';
+import GainsAndResult from './GainsAndResult';
+import DateAndBudget from './DateAndBudget';
 import HighLow from './HighLow';
 
 function App() {
@@ -56,7 +57,7 @@ function App() {
 
   return (
     <div>
-      <Search
+      <Navbar
         getStockInfo={getStockInfo}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
@@ -64,7 +65,13 @@ function App() {
         setBudget={setBudget}
         numberCommas={numberCommas}
       />
-      <BudgetAndResult
+      <DateAndBudget
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        budget={budget}
+        setBudget={setBudget}
+      />
+      <GainsAndResult
         budget={budget}
         ticker1={ticker1}
         ticker2={ticker2}

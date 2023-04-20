@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-function BudgetAndResult({
+function GainsAndResult({
   budget,
   ticker1,
   ticker2,
@@ -70,4 +70,4 @@ function BudgetAndResult({
   );
 }
 
-export default BudgetAndResult;
+export default GainsAndResult;

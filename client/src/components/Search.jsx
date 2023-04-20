@@ -4,8 +4,6 @@ function Search({
   getStockInfo,
   searchQuery,
   setSearchQuery,
-  budget,
-  setBudget,
 }) {
   const handleStock = (e) => {
     e.preventDefault();
@@ -21,10 +19,8 @@ function Search({
     <div>
       <form>
         <input name="ticker" placeholder="Stock" value={searchQuery.ticker} onChange={handleStock} />
-        <input name="date" placeholder="date" type="date" value={searchQuery.budget} onChange={handleStock} />
         <button type="submit" onClick={handleSubmit}>Search</button>
       </form>
-      <input name="budget" placeholder="Budget" value={budget} onChange={(e) => { setBudget(e.target.value); }} />
     </div>
   );
 }
