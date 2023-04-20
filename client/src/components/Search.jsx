@@ -16,11 +16,13 @@ function Search({
   };
 
   return (
-    <div>
-      <form>
-        <input name="ticker" placeholder="Stock" value={searchQuery.ticker} onChange={handleStock} />
-        <button type="submit" onClick={handleSubmit}>Search</button>
-      </form>
+    <div className="navbar-search-container">
+      <div className="navbar-search-bubble">
+        <form>
+          <input name="ticker" placeholder="Stock" value={searchQuery.ticker} onChange={handleStock} />
+          <button type="submit" onClick={handleSubmit}>Search</button>
+        </form>
+      </div>
     </div>
   );
 }
