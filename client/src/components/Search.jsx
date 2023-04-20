@@ -18,9 +18,9 @@ function Search({
   return (
     <div className="navbar-search-container">
       <div className="navbar-search-bubble">
-        <form>
-          <input name="ticker" placeholder="Stock" value={searchQuery.ticker} onChange={handleStock} />
-          <button type="submit" onClick={handleSubmit}>Search</button>
+        <form onSubmit={handleSubmit} className="navbar-form-wrapper">
+          <input name="ticker" value={searchQuery.ticker} onChange={handleStock} className="navbar-search" />
+          <i className="fa-solid fa-magnifying-glass navbar-icon" />
         </form>
       </div>
     </div>

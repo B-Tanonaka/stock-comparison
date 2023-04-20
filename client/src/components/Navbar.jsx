@@ -8,7 +8,7 @@ function Navbar({
 }) {
   return (
     <div className="navbar">
-      <div>Stockr</div>
+      <div className="navbar-title">Stockr</div>
       <Search
         getStockInfo={getStockInfo}
         searchQuery={searchQuery}

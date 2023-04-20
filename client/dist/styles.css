@@ -7,7 +7,10 @@
   Reset so all styles can be modified from the same base
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap"');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Headland+One&display=swap');
+
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -74,6 +77,15 @@ table {
   --white-color: #FCFCFC;
 }
 
+/***** Resets *****/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px var(--main-gray) inset !important;
+    -webkit-text-fill-color: #fff !important;
+}
+
 body {
   font-family: 'Manrope', sans-serif;
 }
@@ -91,10 +103,17 @@ body {
   display: flex;
   align-items: center;
   width: 100vw;
-  height: 40px;
-  position: sticky;
+  height: 60px;
   top: 0;
   z-index: 10;
+}
+
+.navbar-title {
+  position: absolute;
+  left: 20px;
+  color: var(--white-color);
+  font-family: 'Headland One', serif;
+  font-size: 25px;
 }
 
 .navbar-search-container {
@@ -102,15 +121,39 @@ body {
   align-items: center;
   justify-content: center;
   position: absolute;
-  right: 120px;
+  right: 5%;
   width: 200px;
 }
 
 .navbar-search-bubble {
   position: absolute;
-  border-radius: 40px;
-  border: none;
-  height: 40px;
+  display: flex;
+  align-items: center;
+  border-radius: 50px;
+  border: solid 1px #fff;
+  height: 35px;
   width: 200px;
-  background-color: var(--main2-color);
+  background-color: var(--main-gray);
+}
+
+.navbar-form-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-search {
+  position: absolute;
+  border: none;
+  outline: none;
+  width: 65%;
+  left: 35px;
+  color: var(--white-color);
+  background-color: var(--main-gray);
+  z-index: 0;
+}
+
+.navbar-icon {
+  position: absolute;
+  right: 25px;
+  z-index: 2;
 }
