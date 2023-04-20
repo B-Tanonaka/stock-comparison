@@ -7,6 +7,7 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer,
 } from 'recharts';
 
 function Graph({ ticker1, ticker2, tickerAll }) {
@@ -27,18 +28,20 @@ function Graph({ ticker1, ticker2, tickerAll }) {
   };
 
   return (
-    <div>
-      <LineChart width={1000} height={300} data={determineDataSet()} key={Math.random()}>
-        <XAxis tick={false} dataKey="date" />
-        {!(ticker1.data || ticker2.data) && <YAxis type="number" domain={[0, 100]} />}
-        {/* {(ticker1.data || ticker2.data) && <YAxis type="number" domain={[('auto'), (dataMax) => (calculateDomain(dataMax))]} />} */}
-        {(ticker1.data || ticker2.data) && <YAxis type="number" domain={['dataMin', 'auto']} />}
-        <CartesianGrid stroke="#eee" strokeDasharray="3 3" />
-        <Tooltip />
-        <Legend verticalAlign="top" height={36} />
-        {ticker1.data && <Line type="monotone" dataKey={ticker1.name} stroke="#8884d8" />}
-        {ticker2.data && <Line type="monotone" dataKey={ticker2.name} stroke="#000" />}
-      </LineChart>
+    <div className="graph-container">
+      <ResponsiveContainer width="80%" height={350}>
+        <LineChart data={determineDataSet()} key={Math.random()}>
+          <XAxis tick={false} dataKey="date" />
+          {!(ticker1.data || ticker2.data) && <YAxis type="number" domain={[0, 100]} />}
+          {/* {(ticker1.data || ticker2.data) && <YAxis type="number" domain={[('auto'), (dataMax) => (calculateDomain(dataMax))]} />} */}
+          {(ticker1.data || ticker2.data) && <YAxis type="number" domain={['dataMin', 'auto']} />}
+          <CartesianGrid stroke="#eee" strokeDasharray="3 3" />
+          <Tooltip />
+          <Legend verticalAlign="top" height={36} />
+          {ticker1.data && <Line type="monotone" dataKey={ticker1.name} stroke="#8884d8" />}
+          {ticker2.data && <Line type="monotone" dataKey={ticker2.name} stroke="#000" />}
+        </LineChart>
+      </ResponsiveContainer>
     </div>
   );
 }

@@ -71,9 +71,6 @@ function App() {
     getRefreshStocks();
   }, [searchDate]);
 
-  console.log('searchDate: ', searchDate);
-  console.log('tickerAll: ', tickerAll);
-
   // Give numbers commas
   const numberCommas = (num) => (
     `$${num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`
