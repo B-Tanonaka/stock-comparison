@@ -3,19 +3,19 @@ import React from 'react';
 function DateAndBudget({
   budget,
   setBudget,
-  searchQuery,
-  setSearchQuery,
+  searchDate,
+  setSearchDate,
 }) {
   const handleStock = (e) => {
     e.preventDefault();
-    setSearchQuery({ ...searchQuery, [e.target.name]: e.target.value.toUpperCase() });
+    setSearchDate(e.target.value);
   };
 
   return (
     <div className="date-budget-container">
       <div className="date-budget-wrapper">
         <span className="date-budget-text">Date</span>
-        <input name="date" placeholder="date" type="date" value={searchQuery.date} onChange={handleStock} className="date-budget-search" />
+        <input name="date" placeholder="date" type="date" value={searchDate} onChange={handleStock} className="date-budget-search" />
       </div>
       <div className="date-budget-wrapper">
         <span className="date-budget-text">Budget</span>

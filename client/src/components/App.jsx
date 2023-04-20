@@ -25,7 +25,8 @@ function App() {
   //   low: Infinity,
   // });
   const [tickerAll, setTickerAll] = useState({});
-  const [searchQuery, setSearchQuery] = useState({ ticker: '', date: '2023-01-01' });
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchDate, setSearchDate] = useState('2023-01-01');
   const [budget, setBudget] = useState(5000);
   const [gains, setGains] = useState({ ticker1: 0, ticker2: 0 });
 
@@ -33,13 +34,25 @@ function App() {
   const getStockInfo = (stock, startingDate) => {
     axios.get('/stocks', { params: { ticker: stock, date: startingDate } })
       .then((response) => {
-        if (!ticker1.data && ticker2.name !== searchQuery.ticker) {
-          setTicker1({ ...ticker1, name: searchQuery.ticker, data: response.data });
-        } else if (!ticker2.data && ticker1.name !== searchQuery.ticker) {
-          setTicker2({ ...ticker2, name: searchQuery.ticker, data: response.data });
+        if (ticker1.name === stock) {
+          setTicker1({ ...ticker1, name: searchQuery, data: response.data });
+        } else if (!ticker2.data && ticker1.name !== searchQuery) {
+          setTicker2({ ...ticker2, name: searchQuery, data: response.data });
         }
       })
       .catch((err) => console.error(err));
+  };
+
+  // Get request that refreshes data based new date
+  const getRefreshStocks = () => {
+    axios.get('/stocks', { params: { ticker: ticker1.name, date: searchDate } })
+      .then((response) => {
+        setTicker1({ ...ticker1, data: response.data });
+      }).catch((err) => console.error(err));
+    axios.get('/stocks', { params: { ticker: ticker2.name, date: searchDate } })
+      .then((response) => {
+        setTicker2({ ...ticker2, data: response.data });
+      }).catch((err) => console.error(err));
   };
 
   // Combine ticker1 and ticker2 into tickerAll
@@ -53,6 +66,14 @@ function App() {
     }
   }, [ticker1, ticker2]);
 
+  // Refetch stocks when new date is selected
+  useEffect(() => {
+    getRefreshStocks();
+  }, [searchDate]);
+
+  console.log('searchDate: ', searchDate);
+  console.log('tickerAll: ', tickerAll);
+
   // Give numbers commas
   const numberCommas = (num) => (
     `$${num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`
@@ -63,6 +84,7 @@ function App() {
       <Navbar
         getStockInfo={getStockInfo}
         searchQuery={searchQuery}
+        searchDate={searchDate}
         setSearchQuery={setSearchQuery}
         budget={budget}
         setBudget={setBudget}
@@ -70,8 +92,8 @@ function App() {
       />
       <div className="column-1-3-1">
         <DateAndBudget
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
+          searchDate={searchDate}
+          setSearchDate={setSearchDate}
           budget={budget}
           setBudget={setBudget}
         />
@@ -82,7 +104,7 @@ function App() {
           setTicker1={setTicker1}
           setTicker2={setTicker2}
           setTickerAll={setTickerAll}
-          searchQuery={searchQuery}
+          searchDate={searchDate}
           gains={gains}
           setGains={setGains}
           numberCommas={numberCommas}

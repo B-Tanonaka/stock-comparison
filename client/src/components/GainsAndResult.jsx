@@ -10,6 +10,7 @@ function GainsAndResult({
   gains,
   setGains,
   numberCommas,
+  searchDate,
 }) {
   const resetTicker = (tick) => {
     setTickerAll({});
@@ -47,7 +48,7 @@ function GainsAndResult({
       const totalGains = calculateGains(ticker2);
       setGains((gains) => ({ ...gains, ticker2: totalGains }));
     }
-  }, [ticker1, ticker2, budget]);
+  }, [ticker1, ticker2, budget, searchDate]);
 
   return (
     <div>

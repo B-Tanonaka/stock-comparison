@@ -5,6 +5,7 @@ function Navbar({
   getStockInfo,
   searchQuery,
   setSearchQuery,
+  searchDate,
 }) {
   return (
     <div className="navbar">
@@ -15,6 +16,7 @@ function Navbar({
         getStockInfo={getStockInfo}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
+        searchDate={searchDate}
       />
     </div>
   );
