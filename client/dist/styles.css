@@ -67,14 +67,14 @@ table {
 
   /* Primary colors */
   --main-gray: #1A1A18;
-  --main-green: #384238;
+  --main-green: #3b3f3b;
   --main-white: #FCFCFC;
   --sec-green: #48CF2A;
   --sec-red: #FF4040;
   /* --ter-color: #F36074; */
 
   /* Primary grays */
-  --gray2-color: #928f8f;
+  --gray2-color: #3e3d3d;
   --gray1-color: #EBEBEB;
 }
 
@@ -214,7 +214,7 @@ p {
 .date-budget-container {
   display: flex;
   justify-content: center;
-  margin-top: 20%;
+  margin-top: 15%;
 }
 
 .date-budget-wrapper {
@@ -367,6 +367,7 @@ p.recharts-tooltip-label {
   position: relative;
   margin-left: 10%;
   margin-right: 10%;
+  background-color: var(--gray2-color);
 }
 
 .stock-card-name {
