@@ -31,7 +31,7 @@ function Graph({ ticker1, ticker2, tickerAll }) {
     <div className="graph-container">
       <ResponsiveContainer width="80%" height={350}>
         <LineChart data={determineDataSet()} key={Math.random()}>
-          <CartesianGrid stroke="#404045" strokeDasharray="3 3" />
+          <CartesianGrid stroke="#928f8f" strokeDasharray="3 3" />
           <XAxis tick={false} dataKey="date" stroke="white" />
           {!(ticker1.data || ticker2.data) && <YAxis type="number" domain={[0, 100]} tick={{ fill: '#FCFCFC' }} stroke="#FCFCFC" />}
           {/* {(ticker1.data || ticker2.data) && <YAxis type="number" domain={[('auto'), (dataMax) => (calculateDomain(dataMax))]} />} */}
