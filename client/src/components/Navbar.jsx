@@ -11,7 +11,7 @@ function Navbar({
   return (
     <div className="navbar">
       <div className="navbar-title-container">
-        <img src={logo} alt="Stockr bull logo" className="logo" />
+        <img src={logo} alt="Stockr bull logo" className="navbar-logo" />
         <div className="navbar-title">Stockr</div>
       </div>
       <Search
