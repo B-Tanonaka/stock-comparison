@@ -67,7 +67,7 @@ table {
 
   /* Primary colors */
   --main-gray: #1A1A18;
-  --main-green: #3b3f3b;
+  --main-green: #2b2d2b;
   --main-white: #FCFCFC;
   --sec-green: #48CF2A;
   --sec-red: #FF4040;
@@ -108,8 +108,9 @@ body {
   font-family: 'Manrope', sans-serif;
   background-color: var(--main-green);
   color: var(--main-white);
-  background-image: url('./assets/paper-texture.jpg');
-  background-blend-mode: multiply;
+  background-image: url('./assets/vector-texture2.png');
+  background-size: 100%;
+  background-blend-mode: color-dodge;
 }
 
 h4 {
@@ -289,14 +290,22 @@ p {
 }
 
 .stock-info-name {
-  font-size: 30px;
+  --height: 30px;
+  font-size: var(--height);
+  line-height: var(--height);
+  color: transparent;
+  text-shadow:
+    0 calc(-1 * var(--track, 0em)) #FFF,
+    0 calc(var(--height) - var(--track, 0em)) var(--sec-red);
+  overflow: hidden;
+  transition: 0.2s;
   margin-bottom: 5%;
+  z-index: 2;
 }
 
 .stock-info-name:hover {
+  --track: 35px;
   cursor: not-allowed;
-  box-shadow: 2px 2px 10px var(--shadow-color);
-  color: green;
 }
 
 .stock-info-ticker {
