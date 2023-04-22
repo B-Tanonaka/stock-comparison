@@ -34,7 +34,7 @@ function App() {
 
   // For the memes
   const showTheMoney = () => {
-    if (ticker1.high > 0 && ticker2.high > 0) {
+    if (gains.ticker1 > 0 && gains.ticker2 > 0) {
       setShowMoney(showMoney + 1);
       setTimeout(() => {
         setShowMoney(2);

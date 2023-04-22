@@ -223,7 +223,7 @@ p {
 .date-budget-container {
   display: flex;
   justify-content: center;
-  margin-top: 15%;
+  margin-top: 12%;
 }
 
 .date-budget-wrapper {
@@ -286,7 +286,7 @@ p {
 .stock-info-wrapper {
   width: 250px;
   height: 150px;
-  margin-top: 70px;
+  margin-top: 40px;
 }
 
 .stock-info-name {
