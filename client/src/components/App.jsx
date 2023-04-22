@@ -6,18 +6,15 @@ import GainsAndResult from './GainsAndResult';
 import DateAndBudget from './DateAndBudget';
 import StockCards from './StockCards';
 import MoneyDance from './MoneyDance';
-import SampleData from '../sampleData';
 
 function App() {
-  const [ticker1, setTicker1] = useState(SampleData[0]);
-  // const [ticker2, setTicker2] = useState(SampleData[1]);
-  // const [ticker1, setTicker1] = useState({
-  //   ticker: 'ticker1',
-  //   name: '',
-  //   data: '',
-  //   high: 0,
-  //   low: Infinity,
-  // });
+  const [ticker1, setTicker1] = useState({
+    ticker: 'ticker1',
+    name: '',
+    data: '',
+    high: 0,
+    low: Infinity,
+  });
   const [ticker2, setTicker2] = useState({
     ticker: 'ticker2',
     name: '',
