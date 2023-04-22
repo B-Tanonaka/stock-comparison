@@ -1,1 +1,1 @@
-# stock-comparison
+# Stockr
