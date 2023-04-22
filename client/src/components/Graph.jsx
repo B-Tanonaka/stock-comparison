@@ -15,17 +15,17 @@ function Graph({ ticker1, ticker2, tickerAll }) {
     tickerAll.length > 0 ? tickerAll : ticker1.data || ticker2.data
   );
 
-  const calculateDomain = (data) => {
-    if (data < 50) {
-      return (Math.ceil((data - (data * (1 / 20))) / 5) * 5);
-    }
-    if (data >= 50 && data <= 100) {
-      return (Math.ceil((data - (data * (1 / 20))) / 10) * 10);
-    }
-    if (data > 100) {
-      return (Math.ceil((data - (data * (1 / 20))) / 25) * 25);
-    }
-  };
+  // const calculateDomain = (data) => {
+  //   if (data < 50) {
+  //     return (Math.ceil((data - (data * (1 / 20))) / 5) * 5);
+  //   }
+  //   if (data >= 50 && data <= 100) {
+  //     return (Math.ceil((data - (data * (1 / 20))) / 10) * 10);
+  //   }
+  //   if (data > 100) {
+  //     return (Math.ceil((data - (data * (1 / 20))) / 25) * 25);
+  //   }
+  // };
 
   return (
     <div className="graph-container">
@@ -39,8 +39,8 @@ function Graph({ ticker1, ticker2, tickerAll }) {
 
           <Tooltip />
           <Legend verticalAlign="top" height={36} />
-          {ticker1.data && <Line type="monotone" dataKey={ticker1.ticker} stroke="#8884d8" dot={false} />}
-          {ticker2.data && <Line type="monotone" dataKey={ticker2.ticker} stroke="#db7f8e" dot={false} />}
+          {ticker1.data && <Line type="monotone" dataKey={ticker1.ticker} stroke="#8884D8" dot={false} />}
+          {ticker2.data && <Line type="monotone" dataKey={ticker2.ticker} stroke="#93DCE6" dot={false} />}
         </LineChart>
       </ResponsiveContainer>
     </div>
