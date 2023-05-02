@@ -138,11 +138,6 @@ function App() {
           setGains={setGains}
           numberCommas={numberCommas}
         />
-        {/* <button onClick={() =>
-          {console.log("ticker1Data: ", ticker1,
-          "ticker2Data: ", ticker2,
-          "budget: ", budget,
-          "tickerAll: ", tickerAll)}}>Test the data</button> */}
         <Graph ticker1={ticker1} ticker2={ticker2} tickerAll={tickerAll} />
         <div className="stock-card-spacer">
           <StockCards
