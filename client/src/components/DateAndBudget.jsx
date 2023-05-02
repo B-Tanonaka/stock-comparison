@@ -18,8 +18,8 @@ function DateAndBudget({
         <input name="date" placeholder="date" type="date" value={searchDate} onChange={handleStock} className="date-budget-search date-box" />
       </div>
       <div className="date-budget-wrapper">
-        <span className="date-budget-text">Budget</span>
-        <input name="budget" placeholder="Budget" value={budget} onChange={(e) => { setBudget(e.target.value); }} className="date-budget-search budget-box" />
+        <span className="date-budget-text">Principal</span>
+        <input name="budget" placeholder="$$$$" value={budget} onChange={(e) => { setBudget(e.target.value); }} className="date-budget-search budget-box" />
       </div>
     </div>
   );

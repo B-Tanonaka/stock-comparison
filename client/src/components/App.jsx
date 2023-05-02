@@ -25,7 +25,7 @@ function App() {
   const [tickerAll, setTickerAll] = useState({});
   const [searchQuery, setSearchQuery] = useState('');
   const [searchDate, setSearchDate] = useState('2023-01-01');
-  const [budget, setBudget] = useState(5000);
+  const [budget, setBudget] = useState(10000);
   const [gains, setGains] = useState({ ticker1: 0, ticker2: 0 });
   const [showMoney, setShowMoney] = useState(0);
 

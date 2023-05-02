@@ -75,7 +75,7 @@ function GainsAndResult({
           && (
           <div className="stock-info-wrapper stock-left">
             <div className="stock-info-name stock-left" onClick={() => resetTicker('1')}>{ticker1.name}</div>
-            <div className="stock-info-ticker stock-left">{`${ticker1.ticker}`}</div>
+            <div className="stock-info-ticker stock-left" onClick={() => resetTicker('1')}>{`${ticker1.ticker}`}</div>
             <div className={`${determineGainsColor('ticker1')} stock-left`}>{numberCommas(gains.ticker1)}</div>
           </div>
           )}
@@ -85,7 +85,7 @@ function GainsAndResult({
             && (
             <div className="stock-info-wrapper stock-right">
               <div className="stock-info-name stock-right" onClick={() => resetTicker('2')}>{ticker2.name}</div>
-              <div className="stock-info-ticker stock-right">{`${ticker2.ticker}`}</div>
+              <div className="stock-info-ticker stock-right" onClick={() => resetTicker('2')}>{`${ticker2.ticker}`}</div>
               <div className={`${determineGainsColor('ticker2')} stock-right`}>{numberCommas(gains.ticker2)}</div>
             </div>
             )}

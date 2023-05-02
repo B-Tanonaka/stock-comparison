@@ -235,7 +235,7 @@ p {
 .date-budget-wrapper {
   display: flex;
   align-items: center;
-  margin-right: 5%;
+  margin-right: 8%;
   margin-left: 4.5%
 }
 
@@ -317,6 +317,10 @@ p {
 .stock-info-ticker {
   font-size: 16px;
   margin-bottom: 12%;
+}
+
+.stock-info-ticker:hover {
+  cursor: pointer;
 }
 
 .stock-info-gains-positive {
